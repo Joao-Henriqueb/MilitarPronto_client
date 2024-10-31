@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './Enunciado.module.css';
+import Opcoes from './Opcoes';
 
 const Enunciado = ({ texto }) => {
   return (
@@ -14,6 +15,7 @@ const Enunciado = ({ texto }) => {
         afirmações abaixo sobre os requisitos básicos a serem apurados no
         estágio probatório.
       </p>
+      <Opcoes />
     </div>
   );
 };
