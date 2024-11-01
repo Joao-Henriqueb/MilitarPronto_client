@@ -1,0 +1,39 @@
+
+
+
+
+/* Cabeçalho */
+.navbar {
+  background-color: #1F3B4D;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 10px 20px;
+}
+
+.navbarBrand {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+.navbarBrand .logo {
+  height: 60px; /* Ajuste conforme necessário */
+}
+
+.navbarLinks {
+  display: flex;
+  gap: 15px;
+}
+
+.navbarLinks .navLink {
+  color: #FFFFFF;
+  text-decoration: none;
+  padding: 8px 15px;
+  transition: background-color 0.3s, color 0.3s;
+  border-radius: 4px;
+}
+
+.navbarLinks .navLink:hover {
+  background-color: #4B5320; /* Verde militar */
+  color: #FFFFFF;
+}

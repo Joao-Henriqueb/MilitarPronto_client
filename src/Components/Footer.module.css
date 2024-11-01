@@ -1,0 +1,26 @@
+footer {
+  background-color: #6E7074;
+  color: #FFFFFF;
+  text-align: center;
+  padding: 10px;
+}
+
+.footer p {
+  margin: 5px 0;
+}
+
+.footerLinks {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 5px;
+}
+
+.footerLinks .footerLink {
+  color: #FFFFFF;
+  text-decoration: none;
+}
+
+.footerLinks .footerLink:hover {
+  color: #1F3B4D; /* Azul escuro */
+}
