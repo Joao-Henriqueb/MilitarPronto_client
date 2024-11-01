@@ -1,0 +1,31 @@
+.questionFooter{
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin-top: 1rem;
+}
+.submitAnswer{
+  background-color: #1F3B4D;
+  color: #FFFFFF;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  border: none;
+  padding: 10px;
+}
+.submitAnswer:hover{
+  background-color: #2D5778;
+}
+.response{
+  color:  #4B5320;
+  font-weight: bold;
+  font-size: 0.8rem;
+}
+
+@media (min-width:600px) {
+  .response{
+    font-size: 1rem;
+  }
+  .submitAnswer{
+    padding: 10px 25px;
+  }
+}
