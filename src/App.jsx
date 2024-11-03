@@ -6,6 +6,7 @@ import Footer from './Components/Footer';
 import Home from './Components/Home';
 import AuthModal from './Components/modal/AuthModal';
 import About from './Components/About';
+import ErrorPage from './Components/ErrorPage';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/questoes" element={<Questoes />} />
           <Route path="/sobre" element={<About />} />
+          <Route path="*" element={<ErrorPage />} />
         </Routes>
         <Footer />
       </BrowserRouter>
