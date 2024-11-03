@@ -4,6 +4,7 @@ import InfoConcurso from './InfoConcurso';
 import Enunciado from './Enunciado';
 import QuestionFooter from './QuestionFooter';
 import Search from './Search';
+import EmptyStateMessage from '../EmptyStateMessage';
 
 const Questoes = () => {
   return (
@@ -15,17 +16,7 @@ const Questoes = () => {
         <Search />
         <Search />
       </div>
-      <div className={styles.questionCard}>
-        <InfoConcurso />
-        <Enunciado />
-        <QuestionFooter />
-      </div>
-
-      <div className={styles.questionCard}>
-        <InfoConcurso />
-        <Enunciado />
-        <QuestionFooter />
-      </div>
+      <EmptyStateMessage />
     </div>
   );
 };

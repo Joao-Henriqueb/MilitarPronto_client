@@ -1,0 +1,22 @@
+.messageContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40vh; /* Garante que o componente ocupe a maior parte da tela para o footer ficar colado no final */
+  padding: 20px;
+  text-align: center;
+}
+
+.messageText {
+  font-size: 1.5em;
+  color: #1F3B4D; /* Azul escuro */
+  background-color: #F0F0F0; /* Fundo cinza claro para destaque */
+  padding: 20px 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+@media (min-width:500px) {
+  .messageContainer {
+    height: 70vh;
+  }
+}
