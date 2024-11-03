@@ -17,6 +17,17 @@ const Questoes = () => {
         <Search />
       </div>
       <EmptyStateMessage />
+      <div className={styles.questionCard}>
+        <InfoConcurso />
+        <Enunciado />
+        <QuestionFooter />
+      </div>
+
+      <div className={styles.questionCard}>
+        <InfoConcurso />
+        <Enunciado />
+        <QuestionFooter />
+      </div>
     </div>
   );
 };

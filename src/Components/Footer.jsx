@@ -9,8 +9,12 @@ const Footer = () => {
         <a href="#privacy" className={styles.footerLinks}>
           Política de Privacidade
         </a>
+
         <a href="#terms" className={styles.footerLinks}>
           Termos de Serviço
+        </a>
+        <a href="#suporte" className={styles.footerLinks}>
+          Suporte
         </a>
       </div>
     </footer>

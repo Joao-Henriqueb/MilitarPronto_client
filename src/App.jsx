@@ -6,6 +6,7 @@ import Footer from './Components/Footer';
 import Home from './Components/Home';
 import AuthModal from './Components/modal/AuthModal';
 import About from './Components/About';
+import PrivacyPolicy from './Components/PrivacyPolicy';
 import ErrorPage from './Components/ErrorPage';
 
 function App() {
@@ -18,6 +19,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/questoes" element={<Questoes />} />
           <Route path="/sobre" element={<About />} />
+          <Route path="/politica-de-privacidade" element={<PrivacyPolicy />} />
+
           <Route path="*" element={<ErrorPage />} />
         </Routes>
         <Footer />
