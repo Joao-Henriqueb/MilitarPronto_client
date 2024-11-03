@@ -6,7 +6,7 @@ const Home = () => {
   return (
     <div className={styles.main}>
       <section className={styles.hero}>
-        <h1>Bem-vindo ao MilitarPronto</h1>
+        <h1>Bem-vindo ao Militar Pronto</h1>
         <p>
           Prepare-se para concursos militares de forma prática! Nossa plataforma
           oferece questões para você testar seus conhecimentos e alcançar a
