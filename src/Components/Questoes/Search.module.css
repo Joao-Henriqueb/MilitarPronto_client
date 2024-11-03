@@ -1,0 +1,60 @@
+/* Estilos básicos para o container do select */
+
+.customSelect {
+  position: relative;
+  display: inline-flex;
+  width: 100%; /* Ajuste conforme necessário */
+  padding: 0.5rem;
+  box-sizing: border-box;
+}
+
+/* Estilos para o select */
+.customSelect select {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid #1F3B4D; /* Azul escuro */
+  border-radius: 4px;
+  background-color: #FFFFFF; /* Fundo branco */
+  color: #1F3B4D; /* Azul escuro */
+  font-size: 1em;
+  appearance: none; /* Remove a seta padrão do select */
+  -webkit-appearance: none; /* Remove a seta padrão do select no Safari */
+  -moz-appearance: none; /* Remove a seta padrão no Firefox */
+  cursor: pointer;
+  transition: border-color 0.3s, background-color 0.3s;
+}
+
+/* Seta customizada */
+.customSelect::after {
+  content: "▼";
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  color: #1F3B4D; /* Azul escuro */
+  pointer-events: none;
+}
+
+/* Efeito de Hover no select */
+.customSelect select:hover {
+  border-color: #4B5320; /* Verde militar */
+}
+
+/* Estilo para quando o select está em foco */
+.customSelect select:focus {
+  border-color: #6E7074; /* Cinza médio */
+  outline: none;
+}
+
+/* Estilos para as opções do select */
+.customSelect option {
+  color: #1F3B4D; /* Azul escuro */
+  background-color: #FFFFFF; /* Fundo branco */
+}
+
+@media (min-width:700px) {
+  .customSelect {
+    width: 180px;
+  }
+  
+}

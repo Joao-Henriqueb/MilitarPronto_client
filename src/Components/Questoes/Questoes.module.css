@@ -3,9 +3,30 @@
     border: 2px solid #1F3B4D;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    max-width: 800px;
+    max-width: 600px;
     margin: 20px auto;
-    padding: 20px;
+    padding: 15px;
     font-family: Arial, sans-serif;
     color: #1F3B4D;
+  }
+  .contentSearch h1{
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  @media (min-width:700px) {
+    .contentGeral{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+    }
+  }
+  
+
+  @media (min-width:1000px) {
+    .questionCard{
+      max-width: 800px;
+    }
+
   }
