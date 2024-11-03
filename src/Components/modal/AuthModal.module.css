@@ -37,6 +37,7 @@
   justify-content: center;
   background-color: #E0E0E0; /* Cinza médio */
   color: #1F3B4D;
+  font-weight: bold;
   padding: 10px;
   border-radius: 4px;
   cursor: pointer;
@@ -45,9 +46,9 @@
 }
 
 .googleLogin img {
-  width: 20px;
-  height: 20px;
-  margin-right: 10px;
+  width: 25px;
+  height: 25px;
+  margin-right: 15px;
 }
 
 .googleLogin:hover {

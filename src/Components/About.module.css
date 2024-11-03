@@ -1,0 +1,70 @@
+/* Estilos gerais da seção "Sobre" */
+.aboutSection {
+  padding: 40px 20px;
+  background-color: #F5F5F5; /* Cinza claro para fundo suave */
+
+}
+
+.aboutContainer {
+  display: flex;
+  max-width: 1000px;
+  margin: 0 auto;
+  align-items: center;
+  gap: 8rem;
+}
+
+/* Estilo para o contêiner da imagem */
+.imageContainer{
+  display: none;
+}
+.aboutImage {
+  width: 100%;
+  max-width: 300px;
+  border-radius: 8px;
+}
+
+/* Estilos para o contêiner de texto */
+.textContainer {
+  flex: 2;
+  color: #1F3B4D; /* Azul escuro */
+  text-align: left;
+  
+}
+
+
+.textContainer h2 {
+  font-size: 2em;
+  color: #4B5320; /* Verde militar */
+  margin-bottom: 20px;
+  text-align: center;
+
+}
+.imageContainerMin{
+  text-align: center;
+}
+
+.textContainer h3 {
+  font-size: 1.5em;
+  color: #1F3B4D;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.textContainer p {
+  font-size: 1em;
+  line-height: 1.6;
+  margin-bottom: 15px;
+  color: #333333;
+}
+
+.textContainer strong {
+  color: #4B5320; /* Verde militar para destaque */
+}
+@media (min-width:1000px) {
+  .imageContainer{
+    display: flex;
+  }
+  .imageContainerMin{
+    display: none;
+  }
+}

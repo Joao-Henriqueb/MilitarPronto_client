@@ -5,6 +5,7 @@ import Questoes from './Components/Questoes/Questoes';
 import Footer from './Components/Footer';
 import Home from './Components/Home';
 import AuthModal from './Components/modal/AuthModal';
+import About from './Components/About';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/questoes" element={<Questoes />} />
+          <Route path="/sobre" element={<About />} />
         </Routes>
         <Footer />
       </BrowserRouter>

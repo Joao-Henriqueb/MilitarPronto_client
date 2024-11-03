@@ -41,7 +41,7 @@ const AuthModal = () => {
           <input type="text" placeholder="Digite seu nome completo" required />
           <input type="email" placeholder="Digite seu e-mail" required />
           <input type="password" placeholder="Crie uma senha" required />
-          <button type="submit">Registrar</button>
+          <button type="submit">Criar Conta</button>
           <p className={styles.loginPrompt}>
             Já tem uma conta? <a onClick={() => setIsLogin(true)}>Entrar</a>
           </p>
