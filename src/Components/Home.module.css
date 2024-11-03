@@ -1,1 +1,87 @@
+.main {
+  flex: 1;
+  padding: 20px;
+}
+.main img{
+  max-width: 100%;
 
+}
+.contentImg {
+  display: flex;
+  justify-content: center;
+}
+.hero {
+  text-align: center;
+  padding: 40px 20px;
+  background-color: #F2F2F2; /* Cinza claro */
+  border-radius: 8px;
+  margin-bottom: 30px;
+}
+
+.hero h1 {
+  color: #1F3B4D;
+  font-size: 2em;
+}
+
+.hero p {
+  color: #4B5320;
+  margin: 20px 0;
+}
+
+.ctaButton {
+  background-color: #1F3B4D;
+  color: #FFFFFF;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.ctaButton:hover {
+  background-color: #4B5320; /* Verde militar no hover */
+}
+
+.contests {
+  padding: 20px;
+  background-color: #FFFFFF;
+  border-radius: 8px;
+  margin-bottom: 30px;
+}
+
+.contests h2 {
+  color: #1F3B4D;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.contestList {
+  list-style: none;
+  padding: 0;
+  color: #333333;
+  text-align: center;
+}
+
+.contestList li {
+  margin: 10px 0;
+  font-size: 1.1em;
+}
+
+
+.freeSection {
+  text-align: center;
+  padding: 40px 20px;
+  background-color: #E5E5E5; /* Fundo levemente acinzentado */
+  border-radius: 8px;
+}
+
+.freeSection h2 {
+  color: #1F3B4D;
+  margin-bottom: 20px;
+}
+
+.freeSection p {
+  color: #4B5320;
+  margin-bottom: 15px;
+}
