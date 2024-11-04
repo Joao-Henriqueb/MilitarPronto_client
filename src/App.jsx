@@ -15,7 +15,7 @@ function App() {
     <div>
       <BrowserRouter>
         <Header />
-        {/*<AuthModal />*/}
+        {<AuthModal />}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/questoes" element={<Questoes />} />

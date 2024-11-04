@@ -4,6 +4,8 @@ import iconGoogle from '../../assets/icon/google.svg';
 
 const AuthModal = () => {
   const [isLogin, setIsLogin] = useState(true); // true para login, false para criar conta
+  const [termsAccepted, setTermsAccepted] = useState(false);
+
   return (
     <div className={styles.modal}>
       <h2>{isLogin ? 'Entrar na sua conta' : 'Criar uma conta'}</h2>
@@ -41,7 +43,24 @@ const AuthModal = () => {
           <input type="text" placeholder="Digite seu nome completo" required />
           <input type="email" placeholder="Digite seu e-mail" required />
           <input type="password" placeholder="Crie uma senha" required />
-          <button type="submit">Criar Conta</button>
+          <div className={styles.termsContainer}>
+            <input
+              type="checkbox"
+              checked={termsAccepted}
+              onChange={(e) => setTermsAccepted(e.target.checked)}
+              name="terms"
+              id="terms"
+            />
+            <label htmlFor="terms" className={styles.termsLabel}>
+              Eu concordo com os <a href="#">Termos de Uso</a> e a{' '}
+              <a href="/#" target="_blank">
+                Política de Privacidade
+              </a>
+            </label>
+          </div>
+          <button type="submit" disabled={!termsAccepted}>
+            Criar Conta
+          </button>
           <p className={styles.loginPrompt}>
             Já tem uma conta? <a onClick={() => setIsLogin(true)}>Entrar</a>
           </p>

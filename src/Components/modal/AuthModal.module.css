@@ -181,11 +181,32 @@
   cursor: pointer;
   transition: background-color 0.3s;
 }
-
-.registerForm button:hover {
-  background-color: #4B5320; /* Verde militar no hover */
+.registerForm button:disabled {
+  cursor: not-allowed;
 }
 
+.registerForm button:hover:enabled {
+  background-color: #4B5320; /* Verde militar no hover */
+}
+/*termos container*/
+
+.termsContainer input{
+  width: 20px;
+  margin-right: 10px;
+
+}
+.termsLabel {
+  font-size: 0.9em;
+  color: #1F3B4D;
+}
+.termsLabel a {
+  color: #4B5320;
+  text-decoration: none;
+  font-weight: bold;
+}
+.termsLabel a:hover {
+  color: #2A4E6A; 
+}
 /* Texto para redirecionar para o login */
 .loginPrompt {
   margin-top: 15px;
