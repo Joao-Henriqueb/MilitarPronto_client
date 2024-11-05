@@ -10,6 +10,7 @@ import PrivacyPolicy from './Components/PrivacyPolicy';
 import ErrorPage from './Components/ErrorPage';
 import TermsOfUse from './Components/TermsOfUse';
 import ResetPassword from './Components/ResetPassword';
+import SupportPage from './Components/SupportPage';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/questoes" element={<Questoes />} />
           <Route path="/redefinir-senha" element={<ResetPassword />} />
           <Route path="/sobre" element={<About />} />
+          <Route path="/suporte" element={<SupportPage />} />
           <Route path="/politica-de-privacidade" element={<PrivacyPolicy />} />
           <Route path="/termos-de-uso" element={<TermsOfUse />} />
 
