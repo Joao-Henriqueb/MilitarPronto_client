@@ -9,16 +9,18 @@ import About from './Components/About';
 import PrivacyPolicy from './Components/PrivacyPolicy';
 import ErrorPage from './Components/ErrorPage';
 import TermsOfUse from './Components/TermsOfUse';
+import ResetPassword from './Components/ResetPassword';
 
 function App() {
   return (
     <div>
       <BrowserRouter>
         <Header />
-        {<AuthModal />}
+        {/*<AuthModal />*/}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/questoes" element={<Questoes />} />
+          <Route path="/redefinir-senha" element={<ResetPassword />} />
           <Route path="/sobre" element={<About />} />
           <Route path="/politica-de-privacidade" element={<PrivacyPolicy />} />
           <Route path="/termos-de-uso" element={<TermsOfUse />} />

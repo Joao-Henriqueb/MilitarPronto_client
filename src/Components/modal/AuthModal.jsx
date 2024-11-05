@@ -27,8 +27,18 @@ const AuthModal = () => {
       {/*logar ou criar conta*/}
       {isLogin ? (
         <form className={styles.loginForm}>
-          <input type="email" placeholder="Digite seu e-mail" required />
-          <input type="password" placeholder="Digite sua senha" required />
+          <input
+            type="email"
+            placeholder="Digite seu e-mail"
+            required
+            autoComplete="email"
+          />
+          <input
+            type="password"
+            placeholder="Digite sua senha"
+            required
+            autoComplete="current-password"
+          />
           <p className={styles.errorMessage}>E-mail ou senha inválido</p>
 
           <span className={styles.forgotPassword}>Esqueci minha senha</span>
@@ -40,9 +50,31 @@ const AuthModal = () => {
         </form>
       ) : (
         <form className={styles.registerForm}>
-          <input type="text" placeholder="Digite seu nome completo" required />
-          <input type="email" placeholder="Digite seu e-mail" required />
-          <input type="password" placeholder="Crie uma senha" required />
+          <input
+            type="text"
+            name="username"
+            placeholder="Digite seu nome completo"
+            autoComplete="username"
+            required
+          />
+          <input
+            type="text"
+            name="username"
+            autoComplete="username"
+            style={{ display: 'none' }}
+          />
+          <input
+            type="email"
+            placeholder="Digite seu e-mail"
+            autoComplete="email"
+            required
+          />
+          <input
+            type="password"
+            placeholder="Crie uma senha"
+            autoComplete="new-password"
+            required
+          />
           <div className={styles.termsContainer}>
             <input
               type="checkbox"
