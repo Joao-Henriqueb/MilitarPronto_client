@@ -1,31 +1,35 @@
+// useFetch.js
 import { useState, useEffect } from 'react';
 
 function useFetch(url, options) {
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [data, setData] = useState(null); // Estado para armazenar os dados recebidos
+  const [loading, setLoading] = useState(false); // Estado para controlar o carregamento
+  const [error, setError] = useState(null); // Estado para armazenar erros
 
   useEffect(() => {
-    // criando função
+    // Interrompe a execução se a URL for nula ou vazia
+    if (!url) return;
+
     const fetchData = async () => {
       setLoading(true);
       try {
         const response = await fetch(url, options);
         if (!response.ok) {
-          throw new Error(`Erro:${response.status}`);
+          throw new Error(`Erro: ${response.status}`);
         }
-        const json = await response.json();
-        setData(json);
+        const result = await response.json();
+        setData(result); // Armazena o resultado no estado `data`
       } catch (error) {
         setError(error.message);
       } finally {
         setLoading(false);
       }
     };
-    //chamando função
+
     fetchData();
-  }, [url, options]);
-  return { data, loading, error };
+  }, [url, options]); // A requisição é refeita sempre que `url` ou `options` mudarem
+
+  return { data, loading, error }; // Retorna os dados, estado de carregamento e erro
 }
 
 export default useFetch;
