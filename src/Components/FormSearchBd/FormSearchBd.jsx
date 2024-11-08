@@ -4,13 +4,16 @@ import useFetchWithLocalStorage from '../../Hooks/useFetchWitchLocalStorage';
 
 const FormSearchBd = () => {
   const [examBoard, setExamBoard] = useState(''); // Armazena o valor selecionado do concurso
-  const [field1, setField1] = useState(''); // Estado para `assuntos`
-  const [field2, setField2] = useState(''); // Estado para `topics`
-  const [field3, setField3] = useState(''); // Estado para `anos`
+  const [selectedTopic, setSelectedTopic] = useState('');
+  const [selectedAssunto, setSelectedAssunto] = useState('');
+  const [selectedAno, setSelectedAno] = useState('');
 
   const handleExamBoardChange = (e) => {
     if (!e.target.value) return; //
     setExamBoard(e.target.value);
+    setSelectedTopic(''); // Limpa o tópico selecionado
+    setSelectedAssunto(''); // Limpa o assunto selecionado
+    setSelectedAno(''); // Limpa o ano selecionado
   };
 
   const url = examBoard
@@ -18,6 +21,26 @@ const FormSearchBd = () => {
     : null;
 
   const { data, loading } = useFetchWithLocalStorage(examBoard, url);
+
+  const topicsOptions = data?.topics
+    ? Object.keys(data.topics).map((topic) => ({ value: topic, label: topic }))
+    : [];
+
+  // Extrai os assuntos e anos correspondentes ao tópico selecionado
+  const assuntosOptions =
+    selectedTopic && data?.topics[selectedTopic]?.assuntos
+      ? data.topics[selectedTopic].assuntos.map((assunto) => ({
+          value: assunto,
+          label: assunto,
+        }))
+      : [];
+
+  const anosOptions =
+    selectedTopic && data?.topics[selectedTopic]?.anos
+      ? data.topics[selectedTopic].anos
+          .sort((a, b) => a - b)
+          .map((ano) => ({ value: ano, label: ano.toString() }))
+      : [];
 
   return (
     <div>
@@ -34,33 +57,22 @@ const FormSearchBd = () => {
         enabled={true}
       />
       <SelectField
-        label="Tópicos"
-        options={(data?.topics || []).map((item) => ({
-          value: item,
-          label: item,
-        }))}
-        value={field2}
-        onChange={(e) => setField2(e.target.value)}
+        options={topicsOptions}
+        value={selectedTopic}
+        onChange={(e) => setSelectedTopic(e.target.value)}
         enabled={!!examBoard && !loading}
       />
       <SelectField
-        options={(data?.assuntos || []).map((item) => ({
-          value: item,
-          label: item,
-        }))}
-        value={field1}
-        onChange={(e) => setField1(e.target.value)}
+        options={assuntosOptions}
+        value={selectedAssunto}
+        onChange={(e) => setSelectedAssunto(e.target.value)}
         enabled={!!examBoard && !loading}
       />
 
       <SelectField
-        label="Anos"
-        options={(data?.anos || []).map((item) => ({
-          value: item,
-          label: item,
-        }))}
-        value={field3}
-        onChange={(e) => setField3(e.target.value)}
+        options={anosOptions}
+        value={selectedAno}
+        onChange={(e) => setSelectedAno(e.target.value)}
         enabled={!!examBoard && !loading}
       />
     </div>

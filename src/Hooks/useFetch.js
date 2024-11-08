@@ -9,7 +9,6 @@ function useFetch(url, options) {
   useEffect(() => {
     // Interrompe a execução se a URL for nula ou vazia
     if (!url) return;
-
     const fetchData = async () => {
       setLoading(true);
       try {
