@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import SelectField from './SelectField';
 import useFetchWithLocalStorage from '../../Hooks/useFetchWitchLocalStorage';
 
@@ -7,27 +7,26 @@ const FormSearchBd = () => {
   const [selectedTopic, setSelectedTopic] = useState('');
   const [selectedAssunto, setSelectedAssunto] = useState('');
   const [selectedAno, setSelectedAno] = useState('');
-
-  const handleExamBoardChange = (e) => {
-    if (!e.target.value) return; //
-    setExamBoard(e.target.value);
-    setSelectedTopic(''); // Limpa o tópico selecionado
-    setSelectedAssunto(''); // Limpa o assunto selecionado
-    setSelectedAno(''); // Limpa o ano selecionado
-  };
-
+  useEffect(() => {
+    setSelectedTopic('');
+    setSelectedAssunto('');
+    setSelectedAno('');
+  }, [examBoard]);
   const url = examBoard
     ? `http://localhost:5000/listagem-assuntos?exam_board=${examBoard}`
     : null;
 
   const { data, loading } = useFetchWithLocalStorage(examBoard, url);
 
-  const topicsOptions = data?.topics
-    ? Object.keys(data.topics).map((topic) => ({ value: topic, label: topic }))
-    : [];
+  const getTopicsOptions = () =>
+    data?.topics
+      ? Object.keys(data.topics).map((topic) => ({
+          value: topic,
+          label: topic,
+        }))
+      : [];
 
-  // Extrai os assuntos e anos correspondentes ao tópico selecionado
-  const assuntosOptions =
+  const getAssuntosOptions = () =>
     selectedTopic && data?.topics[selectedTopic]?.assuntos
       ? data.topics[selectedTopic].assuntos.map((assunto) => ({
           value: assunto,
@@ -35,7 +34,7 @@ const FormSearchBd = () => {
         }))
       : [];
 
-  const anosOptions =
+  const getAnosOptions = () =>
     selectedTopic && data?.topics[selectedTopic]?.anos
       ? data.topics[selectedTopic].anos
           .sort((a, b) => a - b)
@@ -53,24 +52,24 @@ const FormSearchBd = () => {
           { value: 'ESPCEX', label: 'ESPCEX' },
         ]}
         value={examBoard}
-        onChange={handleExamBoardChange}
+        onChange={(e) => setExamBoard(e.target.value)}
         enabled={true}
       />
       <SelectField
-        options={topicsOptions}
+        options={getTopicsOptions()}
         value={selectedTopic}
         onChange={(e) => setSelectedTopic(e.target.value)}
         enabled={!!examBoard && !loading}
       />
       <SelectField
-        options={assuntosOptions}
+        options={getAssuntosOptions()}
         value={selectedAssunto}
         onChange={(e) => setSelectedAssunto(e.target.value)}
         enabled={!!examBoard && !loading}
       />
 
       <SelectField
-        options={anosOptions}
+        options={getAnosOptions()}
         value={selectedAno}
         onChange={(e) => setSelectedAno(e.target.value)}
         enabled={!!examBoard && !loading}
