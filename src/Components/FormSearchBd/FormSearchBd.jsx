@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import SelectField from './SelectField';
 import useFetchWithLocalStorage from '../../Hooks/useFetchWitchLocalStorage';
+import styles from './FormSearchBd.module.css';
 
 const FormSearchBd = () => {
   const [examBoard, setExamBoard] = useState(''); // Armazena o valor selecionado do concurso
@@ -42,7 +43,7 @@ const FormSearchBd = () => {
       : [];
 
   return (
-    <div>
+    <div className={styles.contentSearch}>
       <h1>Questões de Concurso Militares</h1>
       <SelectField
         options={[

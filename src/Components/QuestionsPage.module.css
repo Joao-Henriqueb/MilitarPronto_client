@@ -1,0 +1,17 @@
+
+  @media (min-width:700px) {
+    .contentGeral{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+    }
+  }
+  
+
+  @media (min-width:1000px) {
+    .questionCard{
+      max-width: 800px;
+    }
+
+  }

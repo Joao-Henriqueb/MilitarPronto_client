@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from './Components/Header';
-import Questoes from './Components/Questoes/Questoes';
+import QuestionsPage from './Components/QuestionsPage';
 import Footer from './Components/Footer';
 import Home from './Components/Home';
 import AuthModal from './Components/modal/AuthModal';
@@ -20,7 +20,7 @@ function App() {
         {/*<AuthModal />*/}
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/questoes" element={<Questoes />} />
+          <Route path="/questoes" element={<QuestionsPage />} />
           <Route path="/redefinir-senha" element={<ResetPassword />} />
           <Route path="/sobre" element={<About />} />
           <Route path="/suporte" element={<SupportPage />} />
