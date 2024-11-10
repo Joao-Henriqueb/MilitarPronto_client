@@ -3,7 +3,7 @@ import SelectField from './SelectField';
 import useFetchWithLocalStorage from '../../Hooks/useFetchWitchLocalStorage';
 import styles from './FormSearchBd.module.css';
 
-const FormSearchBd = () => {
+const FormSearchBd = ({ setSelectedFilters }) => {
   const [examBoard, setExamBoard] = useState(''); // Armazena o valor selecionado do concurso
   const [selectedTopic, setSelectedTopic] = useState('');
   const [selectedAssunto, setSelectedAssunto] = useState('');
@@ -41,6 +41,15 @@ const FormSearchBd = () => {
           .sort((a, b) => a - b)
           .map((ano) => ({ value: ano, label: ano.toString() }))
       : [];
+  const handleSearchClick = () => {
+    if (!examBoard) return;
+    setSelectedFilters({
+      exam_board: examBoard,
+      topics: selectedTopic,
+      assunto: selectedAssunto,
+      ano: selectedAno,
+    });
+  };
 
   return (
     <div className={styles.contentSearch}>
@@ -75,6 +84,7 @@ const FormSearchBd = () => {
         onChange={(e) => setSelectedAno(e.target.value)}
         enabled={!!examBoard && !loading}
       />
+      <button onClick={handleSearchClick}>Buscar</button>
     </div>
   );
 };

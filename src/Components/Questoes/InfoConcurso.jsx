@@ -1,20 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styles from './InfoConcurso.module.css';
 
-const InfoConcurso = ({ concurso, materia, assunto, ano }) => {
+const InfoConcurso = ({ info }) => {
   return (
     <div className={styles.infoConcurso}>
       <p className={styles.info}>
-        <span>Concurso: </span>PM
+        <span>Concurso: </span>
+        {info.exam_board}
       </p>
       <p className={styles.info}>
-        <span>Matéria: </span>Português
+        <span>Matéria: </span>
+        {info.assunto}
       </p>
       <p className={styles.info}>
-        <span>Assunto: </span>Interpretação
+        <span>Assunto: </span>
+        {info.topics}
       </p>
       <p className={styles.info}>
-        <span>Ano: </span>2018
+        <span>Ano: </span>
+        {info.ano}
       </p>
     </div>
   );
