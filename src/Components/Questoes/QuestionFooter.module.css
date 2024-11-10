@@ -15,11 +15,17 @@ margin-top: 1rem;
 .submitAnswer:hover{
   background-color: #2D5778;
 }
-.response{
+.responseCorrect{
   color:  #4B5320;
   font-weight: bold;
   font-size: 0.8rem;
 }
+.responseIncorret{
+  color:  red;
+  font-weight: bold;
+  font-size: 0.8rem;
+}
+
 
 @media (min-width:600px) {
   .response{

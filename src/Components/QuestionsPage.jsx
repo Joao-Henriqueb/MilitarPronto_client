@@ -4,7 +4,6 @@ import EmptyStateMessage from './EmptyStateMessage';
 import FormSearchBd from './FormSearchBd/FormSearchBd';
 import Questao from './Questoes/Questao';
 import useFetch from '../Hooks/useFetch';
-import { object } from 'prop-types';
 
 const buildUrl = (baseUrl, filters) => {
   const params = new URLSearchParams();
