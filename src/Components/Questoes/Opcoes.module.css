@@ -31,6 +31,13 @@
   background-color: #1F3B4D;;
   color: #FFFFFF; 
 }
+.correct{
+  background-color: green;
+}
+.incorrect{
+  background-color: red;
+  padding:0.5rem 0 ;
+}
 
 @media (min-width:400px) {
   .option{
