@@ -4,9 +4,10 @@ import logo from '../assets/logo/logo1.png';
 import menu from '../assets/menu/menu.svg';
 import { AuthContext } from '../context/AuthContext';
 import { logoutUser } from '../auth/authService';
-
+import { useModal } from '../context/ModalContext';
 const Header = () => {
-  const { user } = useContext(AuthContext);
+  const { user, loading } = useContext(AuthContext);
+  const { showModal } = useModal();
 
   const handleSubmit = async (e) => {
     try {
@@ -33,19 +34,24 @@ const Header = () => {
         <a href="#about" className={styles.navLink}>
           Sobre
         </a>
-        {user ? (
-          <a
-            href="#login"
-            onClick={handleSubmit}
-            className={`${styles.navLink} ${styles.login}`}
-          >
-            Sair
-          </a>
-        ) : (
-          <a href="#login" className={`${styles.navLink} ${styles.login}`}>
-            Entrar
-          </a>
-        )}
+        {!loading &&
+          (user ? (
+            <a
+              href="#login"
+              onClick={handleSubmit}
+              className={`${styles.navLink} ${styles.login}`}
+            >
+              Sair
+            </a>
+          ) : (
+            <a
+              href="#login"
+              onClick={showModal}
+              className={`${styles.navLink} ${styles.login}`}
+            >
+              Entrar
+            </a>
+          ))}
       </nav>
     </header>
   );
