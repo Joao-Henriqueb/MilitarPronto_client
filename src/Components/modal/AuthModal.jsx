@@ -2,7 +2,6 @@ import React, { useState, useRef } from 'react';
 import styles from './AuthModal.module.css';
 import iconGoogle from '../../assets/icon/google.svg';
 import close from '../../assets/icon/close.svg';
-
 import { useModal } from '../../context/ModalContext';
 import RegisterForm from './RegisterForm';
 import LoginForm from './LoginForm';
