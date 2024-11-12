@@ -1,9 +1,21 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styles from './Header.module.css';
 import logo from '../assets/logo/logo1.png';
 import menu from '../assets/menu/menu.svg';
+import { AuthContext } from '../context/AuthContext';
+import { logoutUser } from '../auth/authService';
 
 const Header = () => {
+  const { user } = useContext(AuthContext);
+
+  const handleSubmit = async (e) => {
+    try {
+      await logoutUser();
+    } catch (error) {
+      console.log('eror ao deslogar');
+    }
+  };
+
   return (
     <header className={styles.navbar}>
       <div className={styles.navbarBrand}>
@@ -15,15 +27,25 @@ const Header = () => {
         <img src={menu} alt="iconMenu" />
       </div>
       <nav className={styles.navbarLinks}>
-        <a href="#questions" className={styles.navLink}>
+        <a href="/questoes" className={styles.navLink}>
           Questões
         </a>
         <a href="#about" className={styles.navLink}>
           Sobre
         </a>
-        <a href="#login" className={`${styles.navLink} ${styles.login}`}>
-          Entrar
-        </a>
+        {user ? (
+          <a
+            href="#login"
+            onClick={handleSubmit}
+            className={`${styles.navLink} ${styles.login}`}
+          >
+            Sair
+          </a>
+        ) : (
+          <a href="#login" className={`${styles.navLink} ${styles.login}`}>
+            Entrar
+          </a>
+        )}
       </nav>
     </header>
   );

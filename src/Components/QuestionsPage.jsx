@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './QuestionsPage.module.css';
 import EmptyStateMessage from './EmptyStateMessage';
 import FormSearchBd from './FormSearchBd/FormSearchBd';

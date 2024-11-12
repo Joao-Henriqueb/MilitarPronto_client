@@ -1,4 +1,4 @@
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { signInWithEmailAndPassword, signOut } from 'firebase/auth';
 import { auth } from '../firebase/firebaseConfig';
 
 //verifica se usario esta logado ou não
@@ -26,5 +26,15 @@ export const loginUser = async (email, password) => {
   } catch (error) {
     console.error('Erro ao logar:', error);
     throw error;
+  }
+};
+
+// função para deslogar usuario
+
+export const logoutUser = async () => {
+  try {
+    await signOut(auth);
+  } catch (error) {
+    console.error('Erro ao deslogar:', error);
   }
 };
