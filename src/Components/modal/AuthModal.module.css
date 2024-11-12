@@ -25,6 +25,11 @@
 .modal a {
   cursor: pointer;
 }
+.iconClose{
+  position: absolute;
+  right:20px;
+  cursor: pointer;
+}
 
 /* Título do modal */
 .modal h2 {
@@ -65,176 +70,8 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1)
 }
 
-/* Estilo do formulário de login */
 
-.loginForm input {
-  width: 95%;
-  padding: 10px;
-  margin: 8px 0;
-  border: 1px solid #1F3B4D; /* Azul escuro */
-  border-radius: 4px;
-  font-size: 1em;
-  color: #1F3B4D;
-}
 
-.loginForm input::placeholder {
-  color: #6E7074;
-}
 
-.loginForm input:focus {
-  border-color: #4B5320; /* Verde militar */
-  outline: none;
-}
 
-/* Estilo do link "Esqueci minha senha" */
-.forgotPassword {
-  display: block;
-  text-align: right;
-  color: #4B5320;
-  font-size: 0.85em;
-  cursor: pointer;
-  margin-bottom: 15px;
-  transition: color 0.3s;
-}
 
-.forgotPassword:hover {
-  color: #2A4E6A; /* Azul mais claro */
-}
-
-/* Botão de envio */
-.loginForm button {
-  width: 100%;
-  background-color: #1F3B4D; /* Azul escuro */
-  color: #FFFFFF;
-  padding: 10px;
-  border: none;
-  border-radius: 4px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.loginForm button:hover {
-  background-color: #4B5320; /* Verde militar no hover */
-}
-
-/* Link para criar uma conta */
-.createAccount {
-  margin-top: 15px;
-  font-size: 0.9em;
-  color: #1F3B4D;
-}
-
-.createAccount a {
-  color: #4B5320;
-  text-decoration: none;
-  font-weight: bold;
-  transition: color 0.3s;
-}
-
-.createAccount a:hover {
-  color: #2A4E6A; /* Azul mais claro no hover */
-}
-/* Estilo da mensagem de erro */
-.errorMessage {
-  color: #D8000C; /* Vermelho para erro */
-  font-size: 0.9em;
-  margin: 10px 0;
-  text-align: center;
-  background-color: #FFBABA; 
-  padding: 8px;
-  border-radius: 4px;
-}
-
-/*Formulario de registro*/
-
-/* Estilo do formulário de registro */
-.registerForm {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.registerForm input {
-  width: 90%; /* Mantém espaço nas laterais */
-  padding: 10px;
-  margin: 8px 0;
-  border: 1px solid #1F3B4D; /* Azul escuro */
-  border-radius: 4px;
-  font-size: 1em;
-  color: #1F3B4D;
-  background-color: #FFFFFF;
-  transition: border-color 0.3s;
-}
-
-.registerForm input::placeholder {
-  color: #6E7074; /* Cinza médio para placeholder */
-}
-
-.registerForm input:focus {
-  border-color: #4B5320; /* Verde militar */
-  outline: none;
-}
-
-/* Botão de registrar */
-.registerForm button {
-  width: 100%;
-  background-color: #1F3B4D; /* Azul escuro */
-  color: #FFFFFF;
-  padding: 10px;
-  margin-top: 15px;
-  border: none;
-  border-radius: 4px;
-  font-weight: bold;
-  font-size: 1em;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-.registerForm button:disabled {
-  cursor: not-allowed;
-}
-
-.registerForm button:hover:enabled {
-  background-color: #4B5320; /* Verde militar no hover */
-}
-/*termos container*/
-
-.termsContainer input{
-  width: 20px;
-  margin-right: 10px;
-
-}
-.termsLabel {
-  font-size: 0.9em;
-  color: #1F3B4D;
-}
-.termsLabel a {
-  color: #4B5320;
-  text-decoration: none;
-  font-weight: bold;
-}
-.termsLabel a:hover {
-  color: #2A4E6A; 
-}
-/* Texto para redirecionar para o login */
-.loginPrompt {
-  margin-top: 15px;
-  font-size: 0.9em;
-  color: #1F3B4D;
-}
-
-.loginPrompt a {
-  color: #4B5320;
-  text-decoration: none;
-  font-weight: bold;
-  transition: color 0.3s;
-}
-
-.loginPrompt a:hover {
-  color: #2A4E6A; /* Azul claro no hover */
-}
-.iconClose{
-  position: absolute;
-  right:20px;
-  cursor: pointer;
-}
