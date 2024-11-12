@@ -1,13 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import SelectField from './SelectField';
 import useFetchWithLocalStorage from '../../Hooks/useFetchWitchLocalStorage';
 import styles from './FormSearchBd.module.css';
+import { AuthContext } from '../../context/AuthContext';
+import { useModal } from '../../context/ModalContext';
 
 const FormSearchBd = ({ setSelectedFilters }) => {
   const [examBoard, setExamBoard] = useState(''); // Armazena o valor selecionado do concurso
   const [selectedTopic, setSelectedTopic] = useState('');
   const [selectedAssunto, setSelectedAssunto] = useState('');
   const [selectedAno, setSelectedAno] = useState('');
+
+  const { user } = useContext(AuthContext);
+  const { showModal } = useModal();
+
   useEffect(() => {
     setSelectedTopic('');
     setSelectedAssunto('');
@@ -43,12 +49,16 @@ const FormSearchBd = ({ setSelectedFilters }) => {
       : [];
   const handleSearchClick = () => {
     if (!examBoard) return;
-    setSelectedFilters({
-      exam_board: examBoard,
-      topics: selectedTopic,
-      assunto: selectedAssunto,
-      ano: selectedAno,
-    });
+    if (user) {
+      setSelectedFilters({
+        exam_board: examBoard,
+        topics: selectedTopic,
+        assunto: selectedAssunto,
+        ano: selectedAno,
+      });
+    } else {
+      showModal();
+    }
   };
 
   return (

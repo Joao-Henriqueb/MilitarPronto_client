@@ -1,4 +1,14 @@
-/* Estilo do modal */
+.modalBackground{
+  position: fixed;
+  background: rgba(0, 0, 0, 0.5);  
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+
+}
 .modal {
   position: fixed;
   top: 50%;
@@ -11,7 +21,6 @@
   padding: 20px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   text-align: center;
-  z-index: 1000;
 }
 .modal a {
   cursor: pointer;
@@ -223,4 +232,9 @@
 
 .loginPrompt a:hover {
   color: #2A4E6A; /* Azul claro no hover */
+}
+.iconClose{
+  position: absolute;
+  right:20px;
+  cursor: pointer;
 }

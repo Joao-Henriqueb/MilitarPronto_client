@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import styles from './QuestionsPage.module.css';
 import EmptyStateMessage from './EmptyStateMessage';
 import FormSearchBd from './FormSearchBd/FormSearchBd';
@@ -19,6 +19,7 @@ const buildUrl = (baseUrl, filters) => {
 const QuestionsPage = () => {
   const [selectedFilters, setSelectedFilters] = useState();
   const [dynamicUrl, setDynamicUrl] = useState('');
+
   useEffect(() => {
     if (selectedFilters) {
       setDynamicUrl(
