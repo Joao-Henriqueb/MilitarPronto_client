@@ -5,6 +5,7 @@ import close from '../../assets/icon/close.svg';
 import { useModal } from '../../context/ModalContext';
 import RegisterForm from './RegisterForm';
 import LoginForm from './LoginForm';
+import { loginWithGoogle } from '../../auth/authService';
 
 const AuthModal = () => {
   const [isLogin, setIsLogin] = useState(true); // true para login, false para criar conta
@@ -15,6 +16,16 @@ const AuthModal = () => {
   const handleBackgroundClick = (event) => {
     if (event.target === backgroundRef.current) {
       hideModal();
+    }
+  };
+  //login com google
+  const handleLogin = async () => {
+    try {
+      const user = await loginWithGoogle();
+      console.log(user);
+      hideModal();
+    } catch (error) {
+      console.error('Erro ao fazer login:', error);
     }
   };
 
@@ -41,7 +52,7 @@ const AuthModal = () => {
         </p>
         {/* Login com Google */}
         {isLogin ? (
-          <div className={styles.googleLogin}>
+          <div onClick={handleLogin} className={styles.googleLogin}>
             <img src={iconGoogle} alt="Google Icon" />
             Continuar com Google
           </div>

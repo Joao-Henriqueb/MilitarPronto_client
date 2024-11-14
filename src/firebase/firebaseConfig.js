@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { getAuth } from 'firebase/auth';
+import { getAuth, GoogleAuthProvider } from 'firebase/auth';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -15,5 +15,5 @@ const app = initializeApp(firebaseConfig);
 
 // Exportando o serviço de autenticação
 export const auth = getAuth(app);
-
+export const googleProvider = new GoogleAuthProvider();
 export default app;

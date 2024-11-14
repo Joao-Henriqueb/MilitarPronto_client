@@ -1,9 +1,10 @@
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signInWithRedirect,
   signOut,
 } from 'firebase/auth';
-import { auth } from '../firebase/firebaseConfig';
+import { auth, googleProvider } from '../firebase/firebaseConfig';
 
 //verifica se usario esta logado ou não
 export const checkUserStatus = (callback) => {
@@ -29,6 +30,18 @@ export const loginUser = async (email, password) => {
     return userCredential.user; //retorna usuario logado
   } catch (error) {
     console.error('Erro ao logar:', error);
+    throw error;
+  }
+};
+
+// login com google
+export const loginWithGoogle = async () => {
+  try {
+    const userCredential = await signInWithRedirect(auth, googleProvider);
+    console.log('usuario logado', userCredential.user);
+    return userCredential.user;
+  } catch (error) {
+    console.error('Erro ao fazer login com Google', error.message);
     throw error;
   }
 };

@@ -11,11 +11,11 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     // Observa o estado de autenticação
+
     const unsubscribe = checkUserStatus((user) => {
       setUser(user);
       setLoading(false);
     });
-
     // Limpa o observador quando o componente desmonta
     return () => unsubscribe();
   }, []);
