@@ -83,3 +83,13 @@
 .loginPrompt a:hover {
   color: #2A4E6A; /* Azul claro no hover */
 }
+
+.errorMessage {
+  color: #D8000C; /* Vermelho para erro */
+  font-size: 0.9em;
+  margin: 10px 0;
+  text-align: center;
+  background-color: #FFBABA; 
+  padding: 8px;
+  border-radius: 4px;
+}

@@ -1,4 +1,8 @@
-import { signInWithEmailAndPassword, signOut } from 'firebase/auth';
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+} from 'firebase/auth';
 import { auth } from '../firebase/firebaseConfig';
 
 //verifica se usario esta logado ou não
@@ -25,6 +29,21 @@ export const loginUser = async (email, password) => {
     return userCredential.user; //retorna usuario logado
   } catch (error) {
     console.error('Erro ao logar:', error);
+    throw error;
+  }
+};
+
+//criar conta
+export const registerUser = async (email, password) => {
+  try {
+    const userCredential = await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password,
+    );
+    return userCredential.user;
+  } catch (error) {
+    console.error('Erro ao criar conta :', error);
     throw error;
   }
 };
