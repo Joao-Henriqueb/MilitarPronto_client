@@ -48,7 +48,7 @@ export const loginWithGoogle = async () => {
 };
 
 //criar conta
-export const registerUser = async (email, password, name) => {
+export const registerUser = async (email, password, username) => {
   try {
     const userCredential = await createUserWithEmailAndPassword(
       auth,
@@ -56,8 +56,22 @@ export const registerUser = async (email, password, name) => {
       password,
     );
     await updateProfile(userCredential.user, {
-      displayName: name,
+      displayName: username,
     });
+    const response = await fetch('http://localhost:5000/users', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        uid: userCredential.user.uid,
+        email,
+        username,
+      }),
+    });
+    if (!response.ok) {
+      // Se o banco falhar, deletar a conta no Firebase
+      userCredential.user.delete();
+      throw new Error('Erro ao salvar o usuário no banco');
+    }
     return userCredential.user;
   } catch (error) {
     console.error('Erro ao criar conta :', error);
