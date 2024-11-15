@@ -11,28 +11,34 @@ const isStrongPassword = (password) => {
 
 const RegisterForm = ({ setIsLogin }) => {
   const [termsAccepted, setTermsAccepted] = useState(false);
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
   const { hideModal } = useModal();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErrorMessage('');
     setIsLoading(true);
+
     if (!isStrongPassword(password)) {
       setErrorMessage(
         'A senha deve ter pelo menos 8 caracteres, incluindo letras maiúsculas, minúsculas, números e símbolos.',
       );
+      setIsLoading(false);
+
       return;
     }
     try {
-      const user = await registerUser(email, password);
+      const user = await registerUser(email, password, name);
       setIsLoading(false);
       hideModal();
     } catch (error) {
       setIsLoading(false);
+
       switch (error.code) {
         case 'auth/email-already-in-use':
           setErrorMessage(
@@ -61,6 +67,7 @@ const RegisterForm = ({ setIsLogin }) => {
         name="username"
         placeholder="Digite seu nome completo"
         autoComplete="username"
+        onChange={(e) => setName(e.target.value)}
         required
       />
       <input
@@ -102,7 +109,7 @@ const RegisterForm = ({ setIsLogin }) => {
       <button
         onClick={handleSubmit}
         type="submit"
-        disabled={!termsAccepted || isLoading}
+        disabled={!termsAccepted || !name || !email || !password || isLoading}
       >
         {isLoading ? 'Criando Conta...' : 'Criar Conta'}
       </button>

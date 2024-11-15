@@ -3,6 +3,7 @@ import {
   signInWithEmailAndPassword,
   signInWithRedirect,
   signOut,
+  updateProfile,
 } from 'firebase/auth';
 import { auth, googleProvider } from '../firebase/firebaseConfig';
 
@@ -47,13 +48,16 @@ export const loginWithGoogle = async () => {
 };
 
 //criar conta
-export const registerUser = async (email, password) => {
+export const registerUser = async (email, password, name) => {
   try {
     const userCredential = await createUserWithEmailAndPassword(
       auth,
       email,
       password,
     );
+    await updateProfile(userCredential.user, {
+      displayName: name,
+    });
     return userCredential.user;
   } catch (error) {
     console.error('Erro ao criar conta :', error);
