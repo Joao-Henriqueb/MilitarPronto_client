@@ -27,10 +27,11 @@
  transition: background-color 0.3s, color 0.3s;
  margin-right: 1rem;
 }
-.option input[type='radio']:checked + .optionLetter{
-  background-color: #1F3B4D;;
-  color: #FFFFFF; 
+.optionLetterSelected {
+  background-color: #1f3b4d;
+  color: #fff;
 }
+
 .correct{
   background-color: green;
 }

@@ -67,11 +67,14 @@ export const registerUser = async (email, password, username) => {
         username,
       }),
     });
+
     if (!response.ok) {
       // Se o banco falhar, deletar a conta no Firebase
       userCredential.user.delete();
       throw new Error('Erro ao salvar o usuário no banco');
     }
+    //updateUserStatus({ plan: 'free', isBlocked: false, question_used: 0 });
+
     return userCredential.user;
   } catch (error) {
     console.error('Erro ao criar conta :', error);

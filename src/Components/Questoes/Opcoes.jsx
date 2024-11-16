@@ -40,7 +40,13 @@ const Opcoes = ({
               onChange={() => handleChange(opcao)}
               disabled={isSubmitted} // Desativa após o envio da resposta
             />
-            <span className={styles.optionLetter}>{choiceLetter}</span>
+            <span
+              className={`${styles.optionLetter} ${
+                isSelected ? styles.optionLetterSelected : ''
+              }`}
+            >
+              {choiceLetter}
+            </span>
             {opcao}
           </label>
         );

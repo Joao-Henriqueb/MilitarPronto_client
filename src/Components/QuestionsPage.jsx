@@ -21,6 +21,7 @@ const QuestionsPage = () => {
   const [selectedFilters, setSelectedFilters] = useState();
   const [dynamicUrl, setDynamicUrl] = useState('');
   const [token, setToken] = useState(null);
+  const [localCount, setLocalCount] = useState(0);
 
   const { user } = useContext(AuthContext);
 
@@ -50,7 +51,13 @@ const QuestionsPage = () => {
       <FormSearchBd setSelectedFilters={setSelectedFilters} />
       {data ? ( //passar o questao Infos pro componente Questao
         data.question.map((questaoInfos, key) => (
-          <Questao key={key} questaoInfos={questaoInfos} />
+          <Questao
+            key={key}
+            questaoInfos={questaoInfos}
+            tokenUser={token}
+            localCount={localCount}
+            setLocalCount={setLocalCount}
+          />
         ))
       ) : (
         <EmptyStateMessage />
