@@ -1,0 +1,35 @@
+.adminPage {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+
+.navbar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.navbar button {
+  padding: 10px 20px;
+  background-color: #1f3b4d;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.navbar button:hover {
+  background-color: #3a5f72;
+}
+
+.navbar button:focus {
+  background-color: #112d3a;
+}
+
+.content {
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}

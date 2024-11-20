@@ -14,6 +14,7 @@ import ResetPassword from './Components/ResetPassword';
 import SupportPage from './Components/SupportPage';
 import { AuthProvider } from './context/AuthContext';
 import { ModalProvider } from './context/ModalContext';
+import AdminPage from './Components/AdminPage';
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
               <Route path="/termos-de-uso" element={<TermsOfUse />} />
 
               <Route path="*" element={<ErrorPage />} />
+              <Route path="/admin" element={<AdminPage />} />
             </Routes>
             <Footer />
           </ModalProvider>
