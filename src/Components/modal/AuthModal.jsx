@@ -33,7 +33,7 @@ const AuthModal = () => {
   return (
     <div
       ref={backgroundRef}
-      onClick={handleBackgroundClick}
+      onMouseDown={handleBackgroundClick}
       className={styles.modalBackground}
     >
       <div onClick={(e) => e.stopPropagation()} className={styles.modal}>
