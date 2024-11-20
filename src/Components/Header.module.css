@@ -21,9 +21,10 @@
   width: 40px;
 
 }
+
 .navbarLinks {
   position: absolute;
-  display: flex;
+  display: none;
   flex-direction: column;
   right:0;
   bottom:-154px ;
@@ -31,6 +32,13 @@
   padding: 1rem;
   gap: 10px;
 }
+.showMenu{
+  display: flex;
+}
+.hideMenu{
+display: none;
+}
+
 
 .navbarLinks .navLink {
   color: #FFFFFF;
@@ -76,6 +84,7 @@
   background-color:  #3A4E62; 
   color: #FFFFFF;
   border-color:  #3A4E62;
+  display: none;
 }
 }
 @media (min-width:1000px) {

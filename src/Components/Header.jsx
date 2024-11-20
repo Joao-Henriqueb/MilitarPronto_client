@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import styles from './Header.module.css';
 import logo from '../assets/logo/logo1.png';
 import menu from '../assets/menu/menu.svg';
@@ -8,15 +8,19 @@ import { useModal } from '../context/ModalContext';
 const Header = () => {
   const { user, loading } = useContext(AuthContext);
   const { showModal } = useModal();
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const handleSubmit = async (e) => {
     try {
       await logoutUser();
     } catch (error) {
-      console.log('eror ao deslogar');
+      console.log('erro ao deslogar', error.message);
     }
   };
-
+  const toggleMenu = () => {
+    setMenuOpen((prev) => !prev);
+    console.log(menuOpen);
+  };
   return (
     <header className={styles.navbar}>
       <div className={styles.navbarBrand}>
@@ -24,10 +28,14 @@ const Header = () => {
           <img src={logo} alt="logo" className={styles.logo} />
         </a>
       </div>
-      <div className={styles.iconMenu}>
+      <div className={styles.iconMenu} onClick={toggleMenu}>
         <img src={menu} alt="iconMenu" />
       </div>
-      <nav className={styles.navbarLinks}>
+      <nav
+        className={`${styles.navbarLinks} ${
+          menuOpen ? styles.showMenu : styles.hideMenu
+        }`}
+      >
         <a href="/questoes" className={styles.navLink}>
           Questões
         </a>
