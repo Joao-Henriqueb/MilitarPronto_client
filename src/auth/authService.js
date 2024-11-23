@@ -6,6 +6,7 @@ import {
   updateProfile,
 } from 'firebase/auth';
 import { auth, googleProvider } from '../firebase/firebaseConfig';
+const apiUrl = import.meta.env.VITE_API_URL;
 
 //verifica se usario esta logado ou não
 export const checkUserStatus = (callback) => {
@@ -58,7 +59,7 @@ export const registerUser = async (email, password, username) => {
     await updateProfile(userCredential.user, {
       displayName: username,
     });
-    const response = await fetch('http://localhost:5000/users', {
+    const response = await fetch(`${apiUrl}/users`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({

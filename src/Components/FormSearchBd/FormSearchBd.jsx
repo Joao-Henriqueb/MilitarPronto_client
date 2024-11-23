@@ -10,9 +10,9 @@ const FormSearchBd = ({ setSelectedFilters }) => {
   const [selectedTopic, setSelectedTopic] = useState('');
   const [selectedAssunto, setSelectedAssunto] = useState('');
   const [selectedAno, setSelectedAno] = useState('');
-
   const { user } = useContext(AuthContext);
   const { showModal } = useModal();
+  const apiUrl = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     setSelectedTopic('');
@@ -20,7 +20,7 @@ const FormSearchBd = ({ setSelectedFilters }) => {
     setSelectedAno('');
   }, [examBoard]);
   const url = examBoard
-    ? `http://localhost:5000/listagem-assuntos?exam_board=${examBoard}`
+    ? `${apiUrl}/listagem-assuntos?exam_board=${examBoard}`
     : null;
 
   const { data, loading } = useFetchWithLocalStorage(examBoard, url);

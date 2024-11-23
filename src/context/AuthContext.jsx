@@ -1,23 +1,23 @@
 // src/context/AuthContext.js
 import React, { createContext, useState, useEffect } from 'react';
 import { checkUserStatus } from '../auth/authService';
+const apiUrl = import.meta.env.VITE_API_URL;
 
 // Função para buscar plano do usuário
+
 const fetchUserPlan = async (token) => {
   try {
-    const response = await fetch('http://localhost:5000/users/status', {
+    const response = await fetch(`${apiUrl}/users/status`, {
       headers: {
         Authorization: `Bearer ${token}`,
         'Content-Type': 'application/json',
       },
     });
-
     if (!response.ok) {
       throw new Error('Falha ao buscar plano do usuário');
     }
 
     const data = await response.json();
-    console.log(data);
     return data; // Retorna os dados do plano
   } catch (error) {
     console.error('Erro ao obter plano do usuário:', error.message);

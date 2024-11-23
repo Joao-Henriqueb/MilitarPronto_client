@@ -5,10 +5,11 @@ import Enunciado from './Enunciado';
 import QuestionFooter from './QuestionFooter';
 import Opcoes from './Opcoes';
 import { AuthContext } from '../../context/AuthContext';
+const apiUrl = import.meta.env.VITE_API_URL;
 
 const updateQuestionCount = async (newCount, token) => {
   try {
-    const response = await fetch('http://localhost:5000/users/update-count', {
+    const response = await fetch(`${apiUrl}/users/update-count`, {
       method: 'PATCH',
       headers: {
         Authorization: `Bearer ${token}`,
@@ -24,7 +25,7 @@ const updateQuestionCount = async (newCount, token) => {
   }
 };
 
-const Questao = ({ questaoInfos, tokenUser, localCount, setLocalCount }) => {
+const Questao = ({ questaoInfos, tokenUser, setShowModalFree }) => {
   const {
     ano,
     assunto,
@@ -47,6 +48,7 @@ const Questao = ({ questaoInfos, tokenUser, localCount, setLocalCount }) => {
 
   const handleSubmit = async () => {
     if (userStatus.isBlocked) {
+      setShowModalFree(true);
       console.log('Você atingiu o limite diário de questões.');
       return;
     }
@@ -66,9 +68,12 @@ const Questao = ({ questaoInfos, tokenUser, localCount, setLocalCount }) => {
         tokenUser,
       ); // Envia atualização ao backend
       if (response.isBlocked) {
+        //mostra modal e atualiza authContext(userStatus)
+
         updateUserStatus({ isBlocked: true, question_used: 10 });
         console.log('usuario atingiu limite de questões');
-        //mostra modal e atualiza authContext(userStatus)
+        setShowModalFree(true);
+
         return;
       }
     } catch (error) {
