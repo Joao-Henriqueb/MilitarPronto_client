@@ -1,5 +1,6 @@
 import {
   createUserWithEmailAndPassword,
+  getRedirectResult,
   signInWithEmailAndPassword,
   signInWithRedirect,
   signOut,
@@ -40,10 +41,47 @@ export const loginUser = async (email, password) => {
 export const loginWithGoogle = async () => {
   try {
     const userCredential = await signInWithRedirect(auth, googleProvider);
-    console.log('usuario logado', userCredential.user);
     return userCredential.user;
   } catch (error) {
     console.error('Erro ao fazer login com Google', error.message);
+    throw error;
+  }
+};
+
+export const handleRedirectResult = async () => {
+  try {
+    const userCredential = await getRedirectResult(auth);
+
+    if (userCredential) {
+      const { uid, email, displayName } = userCredential.user;
+
+      // Salva o usuário no banco de dados
+      const registerResponse = await fetch(`${apiUrl}/users`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          uid,
+          email,
+          username: displayName,
+        }),
+      });
+
+      if (!registerResponse.ok) {
+        throw new Error(
+          'Erro ao salvar o usuário no banco após login com Google',
+        );
+      }
+
+      console.log('Usuário salvo no banco com sucesso');
+      return userCredential.user;
+    } else {
+      console.log('Nenhum resultado de redirecionamento encontrado');
+    }
+  } catch (error) {
+    console.error(
+      'Erro ao processar resultado do redirecionamento:',
+      error.message,
+    );
     throw error;
   }
 };

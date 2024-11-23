@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from './Components/Header';
@@ -15,8 +15,17 @@ import SupportPage from './Components/SupportPage';
 import { AuthProvider } from './context/AuthContext';
 import { ModalProvider } from './context/ModalContext';
 import AdminPage from './Components/AdminPage';
+import { handleRedirectResult } from './auth/authService';
 
 function App() {
+  //
+  useEffect(() => {
+    handleRedirectResult().then((user) => {
+      if (user) {
+        console.log('Usuário autenticado após redirecionamento:', user);
+      }
+    });
+  }, []);
   return (
     <div>
       <AuthProvider>
