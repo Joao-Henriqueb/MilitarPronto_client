@@ -1,8 +1,11 @@
 import React from 'react';
 import styles from './Home.module.css';
 import Logo from '../assets/militares 3.jpeg';
+import { useModal } from '../context/ModalContext';
 
 const Home = () => {
+  const { showModal } = useModal();
+
   return (
     <div className={styles.main}>
       <section className={styles.hero}>
@@ -12,7 +15,9 @@ const Home = () => {
           oferece questões para você testar seus conhecimentos e alcançar a
           aprovação.
         </p>
-        <button className={styles.ctaButton}>Cadastre-se </button>
+        <button onClick={showModal} className={styles.ctaButton}>
+          Cadastre-se{' '}
+        </button>
       </section>
       <div className={styles.contentImg}>
         <img src={Logo} alt="" />
@@ -33,7 +38,9 @@ const Home = () => {
           <li>
             <strong>ESPCEX</strong> - Concurso para Oficial do Exército
           </li>
-          <button className={styles.ctaButton}>Cadastre-se</button>
+          <button onClick={showModal} className={styles.ctaButton}>
+            Cadastre-se
+          </button>
         </ul>
       </section>
     </div>

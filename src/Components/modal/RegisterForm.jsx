@@ -99,8 +99,8 @@ const RegisterForm = ({ setIsLogin }) => {
           id="terms"
         />
         <label htmlFor="terms" className={styles.termsLabel}>
-          Eu concordo com os <a href="#">Termos de Uso</a> e a{' '}
-          <a href="/#" target="_blank">
+          Eu concordo com os <a href="/termos-de-uso">Termos de Uso</a> e a{' '}
+          <a href="/politica-de-privacidade" target="_blank">
             Política de Privacidade
           </a>
         </label>
