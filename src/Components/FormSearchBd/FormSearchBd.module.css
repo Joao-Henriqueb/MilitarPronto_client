@@ -2,3 +2,54 @@
   text-align: center;
   margin-bottom: 2rem;
 }
+/* Estilo do botão "Buscar" */
+.searchButton {
+  width: 95%; /* Ajusta para ocupar a mesma largura dos selects */
+  padding: 10px;
+  background-color: #1F3B4D; /* Azul escuro */
+  color: #FFFFFF; /* Texto branco */
+  border: none;
+  border-radius: 4px; /* Bordas arredondadas */
+  font-size: 1em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s, box-shadow 0.3s;
+  margin-left: 0.5rem;
+}
+
+/* Efeito ao passar o mouse */
+.searchButton:hover {
+  background-color: #4B5320; /* Verde militar */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+/* Botão quando desabilitado (opcional) */
+.searchButton:disabled {
+  background-color: #A0A0A0; /* Cinza claro */
+  color: #FFFFFF; /* Texto ainda branco */
+  cursor: not-allowed;
+  box-shadow: none;
+}
+@media (min-width:700px) {
+  .contentSearch{
+    margin-left: 1rem;
+  }
+.searchButton{
+  width: 94%;
+}
+}
+
+@media (min-width:800px) {
+  .contentSelect{
+    width: 98%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .contentSearch{
+    margin: 0;
+  }
+  .searchButton{
+    width: 18%;
+  }
+}

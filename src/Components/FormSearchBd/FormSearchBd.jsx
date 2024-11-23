@@ -64,37 +64,41 @@ const FormSearchBd = ({ setSelectedFilters }) => {
   return (
     <div className={styles.contentSearch}>
       <h1>Questões de Concurso Militares</h1>
-      <SelectField
-        options={[
-          { value: 'ESA', label: 'ESA' },
-          { value: 'PM', label: 'PM' },
-          { value: 'EEAR', label: 'EAAR' },
-          { value: 'ESPCEX', label: 'ESPCEX' },
-        ]}
-        value={examBoard}
-        onChange={(e) => setExamBoard(e.target.value)}
-        enabled={true}
-      />
-      <SelectField
-        options={getTopicsOptions()}
-        value={selectedTopic}
-        onChange={(e) => setSelectedTopic(e.target.value)}
-        enabled={!!examBoard && !loading}
-      />
-      <SelectField
-        options={getAssuntosOptions()}
-        value={selectedAssunto}
-        onChange={(e) => setSelectedAssunto(e.target.value)}
-        enabled={!!examBoard && !loading}
-      />
+      <div className={styles.contentSelect}>
+        <SelectField
+          options={[
+            { value: 'ESA', label: 'ESA' },
+            { value: 'PM', label: 'PM' },
+            { value: 'EEAR', label: 'EAAR' },
+            { value: 'ESPCEX', label: 'ESPCEX' },
+          ]}
+          value={examBoard}
+          onChange={(e) => setExamBoard(e.target.value)}
+          enabled={true}
+        />
+        <SelectField
+          options={getTopicsOptions()}
+          value={selectedTopic}
+          onChange={(e) => setSelectedTopic(e.target.value)}
+          enabled={!!examBoard && !loading}
+        />
+        <SelectField
+          options={getAssuntosOptions()}
+          value={selectedAssunto}
+          onChange={(e) => setSelectedAssunto(e.target.value)}
+          enabled={!!examBoard && !loading}
+        />
 
-      <SelectField
-        options={getAnosOptions()}
-        value={selectedAno}
-        onChange={(e) => setSelectedAno(e.target.value)}
-        enabled={!!examBoard && !loading}
-      />
-      <button onClick={handleSearchClick}>Buscar</button>
+        <SelectField
+          options={getAnosOptions()}
+          value={selectedAno}
+          onChange={(e) => setSelectedAno(e.target.value)}
+          enabled={!!examBoard && !loading}
+        />
+        <button className={styles.searchButton} onClick={handleSearchClick}>
+          Buscar
+        </button>
+      </div>
     </div>
   );
 };
