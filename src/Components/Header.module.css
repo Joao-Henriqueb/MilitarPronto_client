@@ -79,6 +79,7 @@ display: none;
   border: 2px solid #1F3B4D; 
   font-weight: bold;
   transition: background-color 0.3s, color 0.3s;
+  cursor: pointer;
 }
 .navbarLinks .login:hover{
   background-color:  #3A4E62; 

@@ -6,14 +6,14 @@ const Footer = () => {
     <footer className={styles.footer}>
       <p>&copy; 2024 MilitarPronto. Todos os direitos reservados.</p>
       <div className={styles.footerLinks}>
-        <a href="#privacy" className={styles.footerLinks}>
+        <a href="/politica-de-privacidade" className={styles.footerLinks}>
           Política de Privacidade
         </a>
 
-        <a href="#terms" className={styles.footerLinks}>
-          Termos de Serviço
+        <a href="/termos-de-uso" className={styles.footerLinks}>
+          Termos de uso
         </a>
-        <a href="#suporte" className={styles.footerLinks}>
+        <a href="/suporte" className={styles.footerLinks}>
           Suporte
         </a>
       </div>

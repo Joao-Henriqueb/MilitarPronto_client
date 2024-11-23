@@ -42,7 +42,9 @@ const LoginForm = ({ setIsLogin }) => {
         <p className={styles.errorMessage}>{errorMessage}</p>
       ) : null}
 
-      <span className={styles.forgotPassword}>Esqueci minha senha</span>
+      <span className={styles.forgotPassword}>
+        <a href="/redefinir-senha">Esqueci minha senha</a>
+      </span>
       <button type="submit">Entrar</button>
       <p className={styles.createAccount}>
         Não tem conta? <a onClick={() => setIsLogin(false)}>Criar uma conta</a>

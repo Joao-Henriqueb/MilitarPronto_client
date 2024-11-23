@@ -24,7 +24,7 @@ const Header = () => {
   return (
     <header className={styles.navbar}>
       <div className={styles.navbarBrand}>
-        <a href="#inicio">
+        <a href="/">
           <img src={logo} alt="logo" className={styles.logo} />
         </a>
       </div>
@@ -39,26 +39,25 @@ const Header = () => {
         <a href="/questoes" className={styles.navLink}>
           Questões
         </a>
-        <a href="#about" className={styles.navLink}>
+        <a href="/sobre" className={styles.navLink}>
           Sobre
         </a>
         {!loading &&
           (user ? (
-            <a
-              href="#login"
+            <button
               onClick={handleSubmit}
               className={`${styles.navLink} ${styles.login}`}
             >
               Sair
-            </a>
+            </button>
           ) : (
-            <a
-              href="#login"
+            <button
+              href="#"
               onClick={showModal}
               className={`${styles.navLink} ${styles.login}`}
             >
               Entrar
-            </a>
+            </button>
           ))}
       </nav>
     </header>
