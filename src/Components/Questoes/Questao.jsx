@@ -86,7 +86,7 @@ const Questao = ({ questaoInfos, tokenUser, setShowModalFree }) => {
   };
 
   return (
-    <div>
+    <div className={styles.testeMo}>
       <div className={styles.questionCard}>
         <InfoConcurso info={{ ano, assunto, exam_board, topics }} />
         <Enunciado
