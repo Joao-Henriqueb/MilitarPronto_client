@@ -24,7 +24,8 @@ const QuestionFooter = ({
             <p className={styles.responseCorrect}>Você acertou!</p>
           ) : (
             <p className={styles.responseIncorret}>
-              Você errou. A resposta correta é: {correctAnswer}
+              Você errou. A resposta correta é:{' '}
+              {String.fromCharCode(65 + correctAnswer)}
             </p>
           )}
         </>

@@ -52,7 +52,8 @@ const Questao = ({ questaoInfos, tokenUser, setShowModalFree }) => {
       console.log('Você atingiu o limite diário de questões.');
       return;
     }
-    const isAnswerCorrect = selectedChoice === correct_answer;
+    const isAnswerCorrect =
+      selectedChoice === String.fromCharCode(65 + correct_answer);
     if (userStatus.plan === 'premium') {
       setIsCorrect(isAnswerCorrect);
       setIsSubmitted(true);
@@ -101,6 +102,7 @@ const Questao = ({ questaoInfos, tokenUser, setShowModalFree }) => {
           setSelectedChoice={setSelectedChoice}
           isSubmitted={isSubmitted}
           correctAnswer={correct_answer}
+          isCorrect={isCorrect}
         />
 
         <QuestionFooter

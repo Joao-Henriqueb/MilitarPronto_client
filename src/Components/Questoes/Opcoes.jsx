@@ -7,10 +7,11 @@ const Opcoes = ({
   setSelectedChoice,
   isSubmitted,
   correctAnswer,
+  isCorrect,
 }) => {
-  const handleChange = (opcao, value) => {
+  const handleChange = (e, opcao) => {
     if (!isSubmitted) {
-      setSelectedChoice(opcao); // Atualiza a escolha do usuário
+      setSelectedChoice(e.currentTarget.value); // Atualiza a escolha do usuário
     }
   };
 
@@ -18,15 +19,14 @@ const Opcoes = ({
     <div className={styles.options}>
       {choices.map((opcao, index) => {
         const choiceLetter = String.fromCharCode(65 + index); // Gera letras A, B, C, etc.
-        const isSelected = selectedChoice === opcao;
-        const isCorrectChoice = opcao === correctAnswer;
+        const isSelected = selectedChoice === choiceLetter;
 
         return (
           <label
             key={index}
             className={`${styles.option} ${
               isSubmitted && isSelected
-                ? isCorrectChoice
+                ? isCorrect
                   ? styles.correct
                   : styles.incorrect
                 : ''
@@ -37,7 +37,7 @@ const Opcoes = ({
               name="answer"
               value={choiceLetter}
               checked={isSelected}
-              onChange={() => handleChange(opcao)}
+              onChange={(e) => handleChange(e, opcao)}
               disabled={isSubmitted} // Desativa após o envio da resposta
             />
             <span
