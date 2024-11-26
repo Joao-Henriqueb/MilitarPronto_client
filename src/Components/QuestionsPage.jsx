@@ -6,6 +6,7 @@ import Questao from './Questoes/Questao';
 import useFetch from '../Hooks/useFetch';
 import { AuthContext } from '../context/AuthContext';
 import LimitReached from './modal/LimitReached';
+import debounce from 'lodash.debounce';
 const apiUrl = import.meta.env.VITE_API_URL;
 
 const buildUrl = (baseUrl, filters) => {
@@ -21,10 +22,9 @@ const buildUrl = (baseUrl, filters) => {
 
 const QuestionsPage = () => {
   const [selectedFilters, setSelectedFilters] = useState();
-  const [dynamicUrl, setDynamicUrl] = useState('');
+  const [dynamicUrl, setDynamicUrl] = useState(null);
   const [token, setToken] = useState(null);
   const [showModalFree, setShowModalFree] = useState(false);
-  const [hasShownModal, setHasShownModal] = useState(false);
 
   const { user } = useContext(AuthContext);
 
@@ -38,7 +38,15 @@ const QuestionsPage = () => {
     [token],
   );
 
+  //atrasar a atualização de selectedFilters
+  const debouncedSetFilters = debounce((filters) => {
+    console.log('testeDebounce');
+    setSelectedFilters(filters);
+  }, 600); // Atraso de 300ms
+
   useEffect(() => {
+    console.log('caiu no effect');
+    if (loading) return; // evita multiplas requisições
     if (user) setToken(user.accessToken);
     if (selectedFilters) {
       setDynamicUrl(buildUrl(`${apiUrl}/questoes`, selectedFilters));
@@ -53,7 +61,10 @@ const QuestionsPage = () => {
 
   return (
     <div className={styles.contentGeral}>
-      <FormSearchBd setSelectedFilters={setSelectedFilters} />
+      <FormSearchBd
+        setSelectedFilters={debouncedSetFilters}
+        isLoading={loading}
+      />
       {data ? ( //passar o questao Infos pro componente Questao
         data.question.map((questaoInfos, key) => (
           <Questao

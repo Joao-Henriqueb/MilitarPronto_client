@@ -5,7 +5,7 @@ import styles from './FormSearchBd.module.css';
 import { AuthContext } from '../../context/AuthContext';
 import { useModal } from '../../context/ModalContext';
 
-const FormSearchBd = ({ setSelectedFilters }) => {
+const FormSearchBd = ({ setSelectedFilters, isLoading }) => {
   const [examBoard, setExamBoard] = useState(''); // Armazena o valor selecionado do concurso
   const [selectedTopic, setSelectedTopic] = useState('');
   const [selectedAssunto, setSelectedAssunto] = useState('');
@@ -95,7 +95,11 @@ const FormSearchBd = ({ setSelectedFilters }) => {
           onChange={(e) => setSelectedAno(e.target.value)}
           enabled={!!examBoard && !loading}
         />
-        <button className={styles.searchButton} onClick={handleSearchClick}>
+        <button
+          className={styles.searchButton}
+          disabled={isLoading}
+          onClick={handleSearchClick}
+        >
           Buscar
         </button>
       </div>
