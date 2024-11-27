@@ -8,6 +8,7 @@ import { AuthContext } from '../context/AuthContext';
 import LimitReached from './modal/LimitReached';
 import debounce from 'lodash.debounce';
 import Pagination from './Questoes/pagination';
+import LoadingSpinner from './loading/LoadingSpinner';
 const apiUrl = import.meta.env.VITE_API_URL;
 
 const buildUrl = (baseUrl, filters, page) => {
@@ -94,7 +95,7 @@ const QuestionsPage = () => {
         isLoading={loading}
       />
       {/*Quando se esta buscando questão aparece componente carregando*/}
-      {isPageLoading && <div>Carregando...</div>}
+      {isPageLoading && <LoadingSpinner />}
 
       {/*EmptyStateMessage: aparece somente quando não se buscou nenhuma questão*/}
       {!isPageLoading &&
