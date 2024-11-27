@@ -31,6 +31,7 @@
   background-color: rgba(0, 0, 0, 0.5);
   padding: 1rem;
   gap: 10px;
+  z-index: 10;
 }
 .showMenu{
   display: flex;
@@ -51,6 +52,12 @@ display: none;
 .navbarLinks .navLink:hover {
   background-color: #3A4E62  ;
   color: #FFFFFF;
+}
+.navbarLinks .login {
+  color: #1F3B4D;
+  padding: 8px 15px;
+  transition: background-color 0.3s, color 0.3s;
+  border-radius: 4px;
 }
 
 @media (min-width:500px) {
@@ -80,6 +87,7 @@ display: none;
   font-weight: bold;
   transition: background-color 0.3s, color 0.3s;
   cursor: pointer;
+ 
 }
 .navbarLinks .login:hover{
   background-color:  #3A4E62; 

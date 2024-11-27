@@ -44,18 +44,11 @@ const Header = () => {
         </a>
         {!loading &&
           (user ? (
-            <button
-              onClick={handleSubmit}
-              className={`${styles.navLink} ${styles.login}`}
-            >
+            <button onClick={handleSubmit} className={`${styles.login}`}>
               Sair
             </button>
           ) : (
-            <button
-              href="#"
-              onClick={showModal}
-              className={`${styles.navLink} ${styles.login}`}
-            >
+            <button href="#" onClick={showModal} className={`${styles.login}`}>
               Entrar
             </button>
           ))}
