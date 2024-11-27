@@ -33,8 +33,9 @@ const QuestionsPage = () => {
   const [dynamicUrl, setDynamicUrl] = useState(null);
   const [token, setToken] = useState(null);
   const [showModalFree, setShowModalFree] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1); // define pagina atual
+  const [totalPages, setTotalPages] = useState(1); // total de paginas das questões procurada
+  const [isPageLoading, setIsPageLoading] = useState(false); // carregando ao clicar em proximo na paginação
 
   const { user } = useContext(AuthContext);
 
@@ -61,6 +62,7 @@ const QuestionsPage = () => {
     if (user) setToken(user.accessToken);
 
     if (selectedFilters && currentPage) {
+      setIsPageLoading(true);
       const newUrl = buildUrl(
         `${apiUrl}/questoes`,
         selectedFilters,
@@ -73,8 +75,8 @@ const QuestionsPage = () => {
   useEffect(() => {
     console.log('chamou data');
     if (data) {
-      console.log(data);
       window.scrollTo({ top: 0, behavior: 'smooth' });
+      setIsPageLoading(false);
 
       setTotalPages(data.totalPages); // Atualiza o total de páginas baseado na resposta da API
     }
@@ -86,30 +88,42 @@ const QuestionsPage = () => {
 
   return (
     <div className={styles.contentGeral}>
+      {/*FormSearchBd : filtro das questões(concurso,ano etc...)*/}
       <FormSearchBd
         setSelectedFilters={debouncedSetFilters}
         isLoading={loading}
       />
-      {data ? ( //passar o questao Infos pro componente Questao
-        data.question.map((questaoInfos, key) => (
-          <Questao
-            key={key}
-            questaoInfos={questaoInfos}
-            tokenUser={token}
-            setShowModalFree={setShowModalFree}
-          />
-        ))
-      ) : (
+      {/*Quando se esta buscando questão aparece componente carregando*/}
+      {isPageLoading && <div>Carregando...</div>}
+
+      {/*EmptyStateMessage: aparece somente quando não se buscou nenhuma questão*/}
+      {!isPageLoading &&
+      (!selectedFilters || (data && data.question.length === 0)) ? (
         <EmptyStateMessage />
-      )}
-      {showModalFree ? <LimitReached onClose={closeModal} /> : null}
-      {data ? (
+      ) : null}
+
+      {/*Aparece as questão quando não esta buscando nada e quando se tem o data(as questões)*/}
+      {!isPageLoading && data
+        ? data.question.map((questaoInfos, key) => (
+            <Questao
+              key={key}
+              questaoInfos={questaoInfos}
+              tokenUser={token}
+              setShowModalFree={setShowModalFree}
+            />
+          ))
+        : null}
+      {/*modal que aparece quando usuario atingiu limite de questões no dia*/}
+      {showModalFree && <LimitReached onClose={closeModal} />}
+
+      {/*componente de paginação quando se tem questões*/}
+      {data && (
         <Pagination
           currentPage={currentPage}
           totalPages={totalPages}
           setCurrentPage={setCurrentPage}
         />
-      ) : null}
+      )}
     </div>
   );
 };
