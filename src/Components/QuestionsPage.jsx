@@ -25,6 +25,12 @@ const buildUrl = (baseUrl, filters, page) => {
 
   return `${baseUrl}?${params.toString()}`;
 };
+// decha url limpa(sem filtros vazios)
+const cleanFilters = (filters) => {
+  return Object.fromEntries(
+    Object.entries(filters).filter(([_, value]) => value), // Remove campos com valores vazios
+  );
+};
 
 const QuestionsPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -58,7 +64,9 @@ const QuestionsPage = () => {
 
   //atrasar a atualização de selectedFilters
   const debouncedSetFilters = debounce((filters) => {
-    setSelectedFilters(filters);
+    const cleanedFilters = cleanFilters(filters); // Remove campos vazios
+
+    setSelectedFilters(cleanedFilters);
     setCurrentPage(1); // Redefine a página para 1 ao alterar filtros
     const updatedParams = { ...filters, pageAtual: currentPage };
     setSearchParams(updatedParams);
@@ -75,12 +83,12 @@ const QuestionsPage = () => {
 
   useEffect(() => {
     if (!token || loading) return;
-
-    if (Object.keys(selectedFilters).length > 0 && currentPage) {
+    const cleanedFilters = cleanFilters(selectedFilters); // Filtra os campos vazios
+    if (Object.keys(cleanedFilters).length > 0 && currentPage) {
       setIsPageLoading(true);
       const newUrl = buildUrl(
         `${apiUrl}/questoes`,
-        selectedFilters,
+        cleanedFilters,
         currentPage,
       );
       setDynamicUrl(newUrl);
