@@ -1,4 +1,6 @@
 import React, { useEffect, useState, useContext, useMemo } from 'react';
+import { useSearchParams } from 'react-router-dom';
+
 import styles from './QuestionsPage.module.css';
 import EmptyStateMessage from './EmptyStateMessage';
 import FormSearchBd from './FormSearchBd/FormSearchBd';
@@ -13,8 +15,6 @@ const apiUrl = import.meta.env.VITE_API_URL;
 
 const buildUrl = (baseUrl, filters, page) => {
   const params = new URLSearchParams();
-  console.log(params);
-
   Object.keys(filters).forEach((key) => {
     if (filters[key]) {
       params.append(key, filters[key]);
@@ -22,19 +22,25 @@ const buildUrl = (baseUrl, filters, page) => {
     params.set('pageAtual', page); // Adiciona o número da página
     params.set('limitQuest', 10); // Define o limite de questões por página
   });
-  console.log('--------');
-  console.log('dentro build');
-  console.log(`${baseUrl}?${params.toString()}`);
-  console.log('----------');
+
   return `${baseUrl}?${params.toString()}`;
 };
 
 const QuestionsPage = () => {
-  const [selectedFilters, setSelectedFilters] = useState();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [selectedFilters, setSelectedFilters] = useState(() => {
+    const filters = {};
+    searchParams.forEach((value, key) => {
+      filters[key] = value;
+    });
+    return filters;
+  });
   const [dynamicUrl, setDynamicUrl] = useState(null);
   const [token, setToken] = useState(null);
   const [showModalFree, setShowModalFree] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1); // define pagina atual
+  const [currentPage, setCurrentPage] = useState(
+    parseInt(searchParams.get('pageAtual')) || 1,
+  );
   const [totalPages, setTotalPages] = useState(1); // total de paginas das questões procurada
   const [isPageLoading, setIsPageLoading] = useState(false); // carregando ao clicar em proximo na paginação
 
@@ -53,16 +59,23 @@ const QuestionsPage = () => {
   //atrasar a atualização de selectedFilters
   const debouncedSetFilters = debounce((filters) => {
     setSelectedFilters(filters);
+    const updatedParams = { ...filters, pageAtual: currentPage };
+    setSearchParams(updatedParams);
   }, 600); // Atraso de 600ms
 
   const { data, loading, error } = useFetch(dynamicUrl, options);
 
   useEffect(() => {
-    console.log('caiu no effect');
-    if (loading) return;
-    if (user) setToken(user.accessToken);
+    // Define o token quando o usuário é autenticado
+    if (user && !token) {
+      setToken(user.accessToken);
+    }
+  }, [user, token]);
 
-    if (selectedFilters && currentPage) {
+  useEffect(() => {
+    if (!token || loading) return;
+
+    if (Object.keys(selectedFilters).length > 0 && currentPage) {
       setIsPageLoading(true);
       const newUrl = buildUrl(
         `${apiUrl}/questoes`,
@@ -70,8 +83,13 @@ const QuestionsPage = () => {
         currentPage,
       );
       setDynamicUrl(newUrl);
+      // Atualiza a URL com os filtros e a página atual
+      const updatedParams = { ...selectedFilters, pageAtual: currentPage };
+      setSearchParams(updatedParams);
+    } else {
+      setDynamicUrl(null);
     }
-  }, [selectedFilters, currentPage]); // Inclua currentPage como dependência
+  }, [selectedFilters, currentPage, token]); // Inclua currentPage como dependência
 
   useEffect(() => {
     console.log('chamou data');
@@ -86,6 +104,11 @@ const QuestionsPage = () => {
   const closeModal = () => {
     setShowModalFree(false);
   };
+  const handlePaginationChange = (newPage) => {
+    console.log('new page');
+    console.log(newPage);
+    setCurrentPage(newPage);
+  };
 
   return (
     <div className={styles.contentGeral}>
@@ -99,30 +122,32 @@ const QuestionsPage = () => {
 
       {/*EmptyStateMessage: aparece somente quando não se buscou nenhuma questão*/}
       {!isPageLoading &&
-      (!selectedFilters || (data && data.question.length === 0)) ? (
-        <EmptyStateMessage />
+      (!selectedFilters || Object.keys(selectedFilters).length === 0) ? (
+        <EmptyStateMessage message="Selecione pelo menos um campo para iniciar sua pesquisa por questões." />
+      ) : data && data.question.length === 0 ? (
+        <EmptyStateMessage message="Nenhuma questão encontrada para os filtros aplicados." />
       ) : null}
 
       {/*Aparece as questão quando não esta buscando nada e quando se tem o data(as questões)*/}
-      {!isPageLoading && data
-        ? data.question.map((questaoInfos, key) => (
-            <Questao
-              key={key}
-              questaoInfos={questaoInfos}
-              tokenUser={token}
-              setShowModalFree={setShowModalFree}
-            />
-          ))
-        : null}
+      {!isPageLoading &&
+        data &&
+        data.question.map((questaoInfos, key) => (
+          <Questao
+            key={key}
+            questaoInfos={questaoInfos}
+            tokenUser={token}
+            setShowModalFree={setShowModalFree}
+          />
+        ))}
       {/*modal que aparece quando usuario atingiu limite de questões no dia*/}
       {showModalFree && <LimitReached onClose={closeModal} />}
 
       {/*componente de paginação quando se tem questões*/}
-      {data && (
+      {data && data.totalPages > 1 && (
         <Pagination
           currentPage={currentPage}
           totalPages={totalPages}
-          setCurrentPage={setCurrentPage}
+          setCurrentPage={handlePaginationChange}
         />
       )}
     </div>

@@ -1,12 +1,10 @@
 // MensagemPesquisa.jsx
 import React from 'react';
 import styles from './EmptyStateMessage.module.css';
-function EmptyStateMessage() {
+function EmptyStateMessage({ message }) {
   return (
     <div className={styles.messageContainer}>
-      <p className={styles.messageText}>
-        Selecione pelo menos um campo para iniciar sua pesquisa por questões.
-      </p>
+      <p className={styles.messageText}>{message}</p>
     </div>
   );
 }
