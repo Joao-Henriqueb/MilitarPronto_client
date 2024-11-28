@@ -59,6 +59,7 @@ const QuestionsPage = () => {
   //atrasar a atualização de selectedFilters
   const debouncedSetFilters = debounce((filters) => {
     setSelectedFilters(filters);
+    setCurrentPage(1); // Redefine a página para 1 ao alterar filtros
     const updatedParams = { ...filters, pageAtual: currentPage };
     setSearchParams(updatedParams);
   }, 600); // Atraso de 600ms
@@ -98,6 +99,8 @@ const QuestionsPage = () => {
       setIsPageLoading(false);
 
       setTotalPages(data.totalPages); // Atualiza o total de páginas baseado na resposta da API
+    } else {
+      setTotalPages(1); // Volta para 1 página caso não existam dados
     }
   }, [data]);
 
