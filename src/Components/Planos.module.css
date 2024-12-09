@@ -1,0 +1,87 @@
+.planosContainer {
+  background-color: #ffffff; /* Fundo claro */
+  color: #000000; /* Texto */
+  font-family: Arial, sans-serif;
+  padding:80px;
+  text-align: center;
+}
+
+.basic h2 {
+  color: #f2a200; /* Cor principal */
+
+}
+
+
+.title {
+  color: #04001d; /* Cor principal */
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.planos {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+}
+
+.plano {
+  border: 3px solid #04001d; /* Cor principal */
+  border-radius: 12px;
+  padding: 30px;
+  width: 300px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  text-align: left;
+}
+
+.plano:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+
+.basic {
+  background-color: #04001d; /* Cor principal */
+  color: #ffffff; /* Texto branco */
+}
+
+.premium {
+  background-color: #f2a200; /* Cor secundária */
+  color: #04001d; /* Texto escuro */
+}
+
+.price {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.benefits {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+}
+
+.benefits li {
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+.subscribeButton {
+  background-color: #ffffff;
+  color: #04001d;
+  border: 2px solid #04001d;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+.basic .subscribeButton:hover{
+  background-color: #f2a200;
+  color: white;
+
+}
+.premium .subscribeButton:hover {
+  background-color: #04001d;
+  color: #ffffff;
+}

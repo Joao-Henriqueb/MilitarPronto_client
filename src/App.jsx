@@ -16,6 +16,9 @@ import { AuthProvider } from './context/AuthContext';
 import { ModalProvider } from './context/ModalContext';
 import AdminPage from './Components/AdminPage';
 import { handleRedirectResult } from './auth/authService';
+import MercadoPago from './Components/MercadoPago';
+import Plans from './Components/Plano';
+import BrickScreen from './Components/BrickScreen';
 
 function App() {
   //
@@ -35,6 +38,7 @@ function App() {
             <AuthModal />
             <Routes>
               <Route path="/" element={<Home />} />
+              <Route path="/planos" element={<Plans />} />
               <Route path="/questoes" element={<QuestionsPage />} />
               <Route path="/redefinir-senha" element={<ResetPassword />} />
               <Route path="/sobre" element={<About />} />
@@ -44,6 +48,8 @@ function App() {
                 element={<PrivacyPolicy />}
               />
               <Route path="/termos-de-uso" element={<TermsOfUse />} />
+              <Route path="/pagamento" element={<MercadoPago />} />
+              <Route path="/status-pagamento" element={<BrickScreen />} />
 
               <Route path="*" element={<ErrorPage />} />
               <Route path="/admin" element={<AdminPage />} />
