@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-
+const apiUrl = import.meta.env.VITE_API_URL;
 import { initMercadoPago, Payment } from '@mercadopago/sdk-react';
 
 const MercadoPago = () => {
   const location = useLocation();
   const navigate = useNavigate();
-
-  const { preferenceId, amount } = location.state || {};
+  const { preferenceId, amount, description, uid, plano } =
+    location.state || {};
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -23,17 +23,15 @@ const MercadoPago = () => {
 
   async function handlePayment(paymentData) {
     setLoading(true);
+    const bodyData = { paymentData, uid, description, plano };
     try {
-      const response = await fetch(
-        'http://localhost:5000/processar_pagamento',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(paymentData),
+      const response = await fetch(`${apiUrl}/processar_pagamento`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
         },
-      );
+        body: JSON.stringify(bodyData),
+      });
       const result = await response.json();
 
       // Redireciona para a página do Status Screen com os dados
