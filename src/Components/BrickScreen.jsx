@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { StatusScreen } from '@mercadopago/sdk-react';
+import styles from './BrickScreen.module.css';
 
 const BrickScreen = () => {
   const location = useLocation();
@@ -18,15 +19,16 @@ const BrickScreen = () => {
   if (!paymentStatus || !paymentDetails?.payment_id) return null;
 
   return (
-    <div>
-      <h1>Estado do Pagamento</h1>
-      <StatusScreen
-        initialization={{
-          status: paymentStatus,
-          paymentId: paymentDetails?.payment_id || 'N/A',
-        }}
-        onReady={() => console.log('Status Screen pronto.')}
-      />
+    <div className={styles.contentBricks}>
+      <div className={styles.bricks}>
+        <StatusScreen
+          initialization={{
+            status: paymentStatus,
+            paymentId: paymentDetails?.payment_id || 'N/A',
+          }}
+          onReady={() => console.log('Status Screen pronto.')}
+        />
+      </div>
     </div>
   );
 };

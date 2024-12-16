@@ -1,0 +1,19 @@
+/*1320614312*/
+.contentBricks{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+  height: 80vh;
+
+}
+.bricks{
+  padding: 2rem;
+}
+
+@media (min-width:1000px) {
+  .bricks{
+    width: 40%;
+  }
+  
+}
