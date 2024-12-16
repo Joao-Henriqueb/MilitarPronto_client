@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 const apiUrl = import.meta.env.VITE_API_URL;
+import styles from './Mercadopago.module.css';
 import { initMercadoPago, Payment } from '@mercadopago/sdk-react';
 
 const MercadoPago = () => {
@@ -55,31 +56,32 @@ const MercadoPago = () => {
   }
 
   return (
-    <div>
-      <h1>Pagamento</h1>
+    <div className={styles.paymentContent}>
       {loading ? (
         <p>Processando pagamento...</p>
       ) : (
-        <Payment
-          initialization={{ preferenceId, amount }}
-          customization={{
-            paymentMethods: {
-              creditCard: 'all',
-              debitCard: 'all',
-              ticket: 'all',
-              bankTransfer: 'all',
-            },
-          }}
-          onSubmit={(params) => {
-            handlePayment(params);
-          }}
-          onReady={() => {
-            console.log('Payment Brick pronto.');
-          }}
-          onError={(error) => {
-            console.error('Erro no Payment Brick:', error);
-          }}
-        />
+        <div className={styles.payment}>
+          <Payment
+            initialization={{ preferenceId, amount }}
+            customization={{
+              paymentMethods: {
+                creditCard: 'all',
+                debitCard: 'all',
+                ticket: 'all',
+                bankTransfer: 'all',
+              },
+            }}
+            onSubmit={(params) => {
+              handlePayment(params);
+            }}
+            onReady={() => {
+              console.log('Payment Brick pronto.');
+            }}
+            onError={(error) => {
+              console.error('Erro no Payment Brick:', error);
+            }}
+          />
+        </div>
       )}
     </div>
   );
