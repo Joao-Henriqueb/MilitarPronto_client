@@ -14,7 +14,7 @@ import ResetPassword from './Components/ResetPassword';
 import SupportPage from './Components/SupportPage';
 import { AuthProvider } from './context/AuthContext';
 import { ModalProvider } from './context/ModalContext';
-import AdminPage from './Components/AdminPage';
+import AdminPage from './Components/Admin/AdminPage';
 import { handleRedirectResult } from './auth/authService';
 import MercadoPago from './Components/MercadoPago';
 import Plans from './Components/Plano';
