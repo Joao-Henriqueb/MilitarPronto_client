@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './Home.module.css';
 import Logo from '../assets/militares 3.jpeg';
 import { useModal } from '../context/ModalContext';
+import ModalConfirmEmail from './ModalConfirmEmail';
 
 const Home = () => {
   const { showModal } = useModal();

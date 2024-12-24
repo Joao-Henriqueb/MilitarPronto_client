@@ -101,7 +101,6 @@ const QuestionsPage = () => {
   }, [selectedFilters, currentPage, token]); // Inclua currentPage como dependência
 
   useEffect(() => {
-    console.log('chamou data');
     if (data) {
       window.scrollTo({ top: 0, behavior: 'smooth' });
       setIsPageLoading(false);

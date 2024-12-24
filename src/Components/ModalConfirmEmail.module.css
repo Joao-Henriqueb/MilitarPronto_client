@@ -1,0 +1,82 @@
+/* Backdrop */
+.modalBackdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+/* Modal container */
+.modalContainer {
+  background-color: #04001D; /* Cor do MilitarPronto */
+  border-radius: 8px;
+  padding: 20px;
+  max-width: 400px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+/* Modal title */
+.modalTitle {
+  color: #fff;
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+/* Modal message */
+.modalMessage {
+  color: #d1d1d1;
+  font-size: 1rem;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.modalMessage.success {
+  color: #4caf50; /* Verde */
+}
+
+/* Mensagem de erro */
+.modalMessage.error {
+  color: #f44336; /* Vermelho */
+}
+
+/* Botão de fechar */
+.modalCloseButton {
+  background-color: transparent;
+  border: none;
+  color: #fff;
+  font-size: 0.9rem;
+  margin-top: 10px;
+  cursor: pointer;
+  text-decoration: underline;
+}
+.modalCloseButton:hover {
+  color: #00aaff;
+}
+
+
+
+/* Modal button */
+.modalButton {
+  background-color: #00aaff; /* Destaque do botão */
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-right: 0.8rem;
+}
+
+.modalButton:hover {
+  background-color: #0077cc;
+}

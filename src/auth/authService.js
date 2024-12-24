@@ -5,6 +5,7 @@ import {
   signInWithRedirect,
   signOut,
   updateProfile,
+  sendEmailVerification,
 } from 'firebase/auth';
 import { auth, googleProvider } from '../firebase/firebaseConfig';
 const apiUrl = import.meta.env.VITE_API_URL;
@@ -112,8 +113,7 @@ export const registerUser = async (email, password, username) => {
       userCredential.user.delete();
       throw new Error('Erro ao salvar o usuário no banco');
     }
-    //updateUserStatus({ plan: 'free', isBlocked: false, question_used: 0 });
-
+    await sendEmailVerification(userCredential.user);
     return userCredential.user;
   } catch (error) {
     console.error('Erro ao criar conta :', error);
@@ -122,11 +122,45 @@ export const registerUser = async (email, password, username) => {
 };
 
 // função para deslogar usuario
-
 export const logoutUser = async () => {
   try {
     await signOut(auth);
   } catch (error) {
     console.error('Erro ao deslogar:', error);
+  }
+};
+
+//reenviar email de confirmaçãõ
+export const handleResendEmail = async (setMessage, setIsSending) => {
+  const cooldownTime = 60 * 1000; // 1 minuto
+  const lastSent = localStorage.getItem('lastVerificationEmailSent');
+
+  if (lastSent && Date.now() - lastSent < cooldownTime) {
+    const remainingTime = Math.ceil(
+      (cooldownTime - (Date.now() - lastSent)) / 1000,
+    );
+    setMessage(
+      `Por favor, aguarde ${remainingTime} segundos antes de reenviar.`,
+    );
+    return;
+  }
+
+  const user = auth.currentUser;
+
+  if (user) {
+    try {
+      setIsSending(true);
+      await sendEmailVerification(user);
+      localStorage.setItem('lastVerificationEmailSent', Date.now());
+      setMessage('E-mail de verificação reenviado com sucesso!');
+    } catch (error) {
+      console.error('Erro ao reenviar e-mail:', error);
+      console.log(error);
+      setMessage('Houve um erro ao tentar reenviar o e-mail.');
+    } finally {
+      setIsSending(false);
+    }
+  } else {
+    setMessage('Usuário não autenticado.');
   }
 };

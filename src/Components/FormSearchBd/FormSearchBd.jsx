@@ -4,12 +4,14 @@ import useFetchWithLocalStorage from '../../Hooks/useFetchWitchLocalStorage';
 import styles from './FormSearchBd.module.css';
 import { AuthContext } from '../../context/AuthContext';
 import { useModal } from '../../context/ModalContext';
+import ModalConfirmEmail from '../ModalConfirmEmail';
 
 const FormSearchBd = ({ setSelectedFilters, isLoading }) => {
   const [examBoard, setExamBoard] = useState(''); // Armazena o valor selecionado do concurso
   const [selectedTopic, setSelectedTopic] = useState('');
   const [selectedAssunto, setSelectedAssunto] = useState('');
   const [selectedAno, setSelectedAno] = useState('');
+  const [emailVerified, setEmailVerified] = useState(true);
   const { user } = useContext(AuthContext);
   const { showModal } = useModal();
   const apiUrl = import.meta.env.VITE_API_URL;
@@ -49,6 +51,12 @@ const FormSearchBd = ({ setSelectedFilters, isLoading }) => {
       : [];
   const handleSearchClick = () => {
     if (!examBoard) return;
+    if (user.emailVerified === false) {
+      // se usuario não verificado erguer modal de cnfirmar email
+      setEmailVerified(false);
+      return;
+    }
+
     if (user) {
       setSelectedFilters({
         exam_board: examBoard,
@@ -102,6 +110,9 @@ const FormSearchBd = ({ setSelectedFilters, isLoading }) => {
         >
           Buscar
         </button>
+        {!emailVerified ? (
+          <ModalConfirmEmail setEmailVerified={setEmailVerified} />
+        ) : null}
       </div>
     </div>
   );

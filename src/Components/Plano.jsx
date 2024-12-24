@@ -3,13 +3,20 @@ import { useNavigate } from 'react-router-dom';
 const apiUrl = import.meta.env.VITE_API_URL;
 import styles from './Planos.module.css';
 import { AuthContext } from '../context/AuthContext';
+import ModalConfirmEmail from './ModalConfirmEmail';
 
 const Plans = () => {
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
   const [loading, setLoading] = useState(false);
+  const [emailVerified, setEmailVerified] = useState(true);
 
   const handleSelectPlan = async (plano, amount, description, user) => {
+    // se usuario não verificado erguer modal de cnfirmar email
+    if (user.emailVerified === false) {
+      setEmailVerified(false);
+    }
+    /*
     const uid = user.uid;
     const name = user.displayName.split(' ');
     const email = user.email;
@@ -33,7 +40,7 @@ const Plans = () => {
       console.error('Erro:', error);
     } finally {
       setLoading(false);
-    }
+    }*/
   };
 
   return (
@@ -84,6 +91,9 @@ const Plans = () => {
             Assinar
           </button>
         </div>
+        {!emailVerified ? (
+          <ModalConfirmEmail setEmailVerified={setEmailVerified} />
+        ) : null}
       </div>
     </div>
   );

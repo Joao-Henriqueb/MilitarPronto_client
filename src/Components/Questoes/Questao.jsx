@@ -24,7 +24,7 @@ const updateQuestionCount = async (newCount, token) => {
     throw error;
   }
 };
-
+console.log('dentro do questoes');
 const Questao = ({ questaoInfos, tokenUser, setShowModalFree }) => {
   const {
     ano,
